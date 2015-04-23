@@ -1,0 +1,20 @@
+/app --> Contiene la parte servidor con toda su arquitectura
+    /controllers
+        /auxiliar --> Utilidades y clases auxiliares para patrones
+        /interfaces
+    /helpers --> Clases que aislan la conexion de BD por ejemplo
+    /models
+        /daos
+        /entities
+
+/configs --> Contiene los archivos de configuración (BD,doctrine...)
+
+/cron --> Aqui todo lo del demonio
+
+/public --> Tiene la parte cliente (Si se hace web)
+    /js
+    /css
+    /images
+
+/test --> Aqui están los teses de la API Rest que hará el grupo que haga el cliente (PHPUnit)
+/vendor --> Autogenerada, con todas las dependencias

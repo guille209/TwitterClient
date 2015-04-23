@@ -1,0 +1,22 @@
+{
+    "name": "pfm/twitterClient",
+    "description": "Proyecto Fin de Master",
+    "version": "0.4.2-dev",
+    "type": "project",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "TwitterClient",
+            "homepage": "https://github.com/guille209/PFM_Twitter",
+            "role": "PFM"
+        }
+    ],
+    "autoload": {
+        "psr-4": { "": "src/" }
+    },
+    "require": {
+        "doctrine/orm": "2.4.*",
+        "symfony/yaml": "2.*",
+        "slim/slim": "~2.6"
+    }
+}
