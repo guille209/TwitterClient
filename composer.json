@@ -11,12 +11,11 @@
             "role": "PFM"
         }
     ],
-    "autoload": {
-        "psr-4": { "": "src/" }
-    },
     "require": {
         "doctrine/orm": "2.4.*",
         "symfony/yaml": "2.*",
+        "abraham/twitteroauth": "0.5.2",
         "slim/slim": "~2.6"
+        
     }
 }
