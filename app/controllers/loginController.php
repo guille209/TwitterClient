@@ -39,7 +39,7 @@ class loginController {
         $_SESSION["connection"] = $connection;
         $user = $_SESSION["connection"]->get("account/verify_credentials");
         echo "<h1>Home</h1><br>";
-        echo "<form action='/search' method='GET'><input name='criteria' type='text' placeholder='Buscar... '/></form>";
+        echo "<form action='/search' method='POST'><input name='criteria' type='text' placeholder='Buscar... '/></form>";
         //var_dump($_SESSION);
         //$datos = $_SESSION["connection"]->get("statuses/home_timeline",array("count" => "1"));
         echo "<a href='/showProfile'> Ver perfil usuario </a>";
@@ -54,8 +54,9 @@ class loginController {
     }
     
     function search($id){
-        return  $_SESSION["connection"]->get("search/tweets",array("q" => $id));
-
+        $var = $_SESSION["connection"]->get("search/tweets",array("q" => $id));
+        $json = json_encode( (array)$var );
+        echo $json;
     }
 
 }
