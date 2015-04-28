@@ -10,6 +10,10 @@ $app = new \Slim\Slim();
 $app->get('/hello/:name', 'hellodefault');
 $app->get('/login', 'login');
 $app->get('/home', 'home');
+//$app->get('/search', 'search');
+
+$app->get('/search/(:id)', 'search' );
+
 $app->run();
 
 function hellodefault($name) {
@@ -26,4 +30,10 @@ function home() {
     $logInController = new controllers\loginController();
     $response = $logInController->home();
     echo $response;
+}
+
+function search($id){
+     $logInController = new controllers\loginController();
+    $response = $logInController->search($id);
+    echo json_decode($response);
 }
