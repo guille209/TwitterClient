@@ -2,6 +2,8 @@
 
 require '../vendor/autoload.php';
 include '/controllers/loginController.php';
+include '/controllers/userController.php';
+
 
 session_cache_limiter(false);
 session_start();
@@ -10,6 +12,7 @@ $app = new \Slim\Slim();
 $app->get('/hello/:name', 'hellodefault');
 $app->get('/login', 'login');
 $app->get('/home', 'home');
+$app->get('/showProfile', 'showProfile');
 //$app->get('/search', 'search');
 
 $app->get('/search/(:id)', 'search' );
@@ -33,7 +36,13 @@ function home() {
 }
 
 function search($id){
-     $logInController = new controllers\loginController();
+    $logInController = new controllers\loginController();
     $response = $logInController->search($id);
     echo json_decode($response);
+}
+
+function showProfile(){
+    $userController = new controllers\userController();
+    $response = $userController->showProfile();
+    echo $response;
 }

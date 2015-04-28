@@ -11,6 +11,13 @@ namespace controllers;
  *
  * @author Propietario
  */
-class userController implements iUserController{
-    //put your code here
+class userController{
+
+    function showProfile(){
+        //var_dump($_SESSION["acces_token"]["screen_name"]);
+        $profile = $_SESSION["connection"]->get("users/show",array("screen_name" => $_SESSION["acces_token"]["screen_name"]));
+        var_dump($profile);
+    }
+    
+    
 }
