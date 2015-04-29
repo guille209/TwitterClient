@@ -38,7 +38,7 @@ function search() {
     $app = \Slim\Slim::getInstance();
     $post_array = $app->request()->post();
     $response = $logInController->search($post_array['criteria']);
-    echo $response;
+    echo json_decode($response, JSON_UNESCAPED_UNICODE);
 }
 
 function showProfile() {
