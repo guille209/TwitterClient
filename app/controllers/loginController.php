@@ -1,7 +1,6 @@
 <?php
 
 namespace controllers;
-
 use Abraham\TwitterOAuth\TwitterOAuth;
 
 /**
@@ -51,12 +50,6 @@ class loginController {
         
         
          
-    }
-    
-    function search($id){
-        $var = $_SESSION["connection"]->get("search/tweets",array("q" => $id));
-        $json = json_encode( (array)$var );
-        echo $json;
     }
 
 }

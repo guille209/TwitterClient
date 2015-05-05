@@ -3,23 +3,18 @@
 require '../vendor/autoload.php';
 include '/controllers/loginController.php';
 include '/controllers/userController.php';
-
+include '/controllers/searchController.php';
 
 session_cache_limiter(false);
 session_start();
 
 $app = new \Slim\Slim();
-$app->get('/hello/:name', 'hellodefault');
 $app->get('/login', 'login');
 $app->get('/home', 'home');
 $app->get('/showProfile', 'showProfile');
 $app->post('/search', 'search');
 
 $app->run();
-
-function hellodefault($name) {
-    echo "Hello " . $name;
-}
 
 function login() {
     $logInController = new controllers\loginController();
@@ -34,11 +29,12 @@ function home() {
 }
 
 function search() {
-    $logInController = new controllers\loginController();
+    $searchController = new controllers\searchController();
     $app = \Slim\Slim::getInstance();
     $post_array = $app->request()->post();
-    $response = $logInController->search($post_array['criteria']);
-    echo json_decode($response, JSON_UNESCAPED_UNICODE);
+    $response = $searchController->search($post_array['criteria']);
+    echo $response;
+//echo json_decode($response, JSON_UNESCAPED_UNICODE);
 }
 
 function showProfile() {
