@@ -39,14 +39,13 @@ class jsonShortener {
             $new_array[$tweetIndex]['user']['profile_image_url'] = $value['user']['profile_image_url'];
             $tweetIndex++;
         }
-        return jsonShortener::jsonRemoveUnicodeSequences(json_encode($new_array,JSON_UNESCAPED_SLASHES));   
+        return jsonShortener::jsonRemoveUnicodeSequences(json_encode($new_array, JSON_UNESCAPED_SLASHES));
     }
 
     public static function jsonRemoveUnicodeSequences($string) {
         //return mb_convert_encoding($struct, 'UTF-8');
         //return html_entity_decode(preg_replace("/U\+([0-9A-F]{4})/", "&#x\\1;", $string), ENT_NOQUOTES, 'UTF-8');
         return utf8_encode($string);
-        
     }
 
 }

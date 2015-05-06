@@ -22,6 +22,12 @@ function login() {
     echo $response;
 }
 
+function logout() {
+    $logInController = new controllers\loginController();
+    $response = $logInController->logout();
+    echo $response;
+}
+
 function home() {
     $logInController = new controllers\loginController();
     $response = $logInController->home();
