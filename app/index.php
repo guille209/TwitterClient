@@ -34,7 +34,6 @@ function search() {
     $post_array = $app->request()->post();
     $response = $searchController->search($post_array['criteria']);
     echo $response;
-//echo json_decode($response, JSON_UNESCAPED_UNICODE);
 }
 
 function showProfile() {
