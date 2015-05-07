@@ -15,6 +15,11 @@ $app->get('/', 'home');
 $app->get('/home', 'home');
 $app->get('/showProfile', 'showProfile');
 $app->post('/search', 'search');
+$app->get('/hashtaglist/create/:name', 'createHashtagList');
+$app->delete('/hashtaglist/delete/:id', 'createHashtagList');
+$app->get('/hashtaglist/list', 'listHastagLists');
+$app->get('/hashtaglist/detail/:id', 'hashtagListDetail');
+
 
 $app->run();
 
