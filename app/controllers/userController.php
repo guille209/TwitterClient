@@ -1,6 +1,8 @@
 <?php
 
 namespace controllers;
+include $_SERVER['DOCUMENT_ROOT'] . '/controllers/interfaces/iUserController.php';
+
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -13,10 +15,9 @@ namespace controllers;
  *
  * @author Propietario
  */
-class userController {
+class userController implements interfaces\iUserController{
 
     function showProfile() {
-        //var_dump($_SESSION["acces_token"]["screen_name"]);
         $profile = $_SESSION["connection"]->get("users/show", array("screen_name" => $_SESSION["access_token"]["screen_name"]));
         var_dump($profile);
     }

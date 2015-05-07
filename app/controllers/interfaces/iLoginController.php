@@ -1,5 +1,7 @@
 <?php
+
 namespace controllers\interfaces;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -11,5 +13,12 @@ namespace controllers\interfaces;
  * @author Propietario
  */
 interface iLoginController {
+
     //put your code here
+
+    public function login();
+
+    public function home();
+
+    public function logout();
 }

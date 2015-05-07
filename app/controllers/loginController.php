@@ -1,6 +1,7 @@
 <?php
 
 namespace controllers;
+include $_SERVER['DOCUMENT_ROOT'] . '/controllers/interfaces/iLoginController.php';
 
 use Abraham\TwitterOAuth\TwitterOAuth;
 
@@ -14,7 +15,7 @@ define('CONSUMER_KEY', 'js6Wzbj8LZbWImero7g2fmipb');
 define('CONSUMER_SECRET', 'nYCQXKSWqnjkej6a9XxkckO1ZPLIY14Xu1RQnu7nVjoAoi9tDp');
 define('OAUTH_CALLBACK', 'http://localhost:8080/home');
 
-class loginController {
+class loginController implements interfaces\iLoginController {
 
     function login() {
         if (!isset($_SESSION['access_token'])) {

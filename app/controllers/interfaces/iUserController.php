@@ -12,4 +12,6 @@ namespace controllers\interfaces;
  */
 interface iUserController {
     //put your code here
+    
+    public function showProfile();
 }

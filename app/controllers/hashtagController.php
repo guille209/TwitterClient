@@ -1,5 +1,8 @@
 <?php
 namespace controllers;
+
+include $_SERVER['DOCUMENT_ROOT'] . '/controllers/interfaces/iHashtagController.php';
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -11,6 +14,6 @@ namespace controllers;
  *
  * @author Propietario
  */
-class hashtagController implements iHashtagController{
+class hashtagController implements interfaces\iHashtagController{
     //put your code here
 }
