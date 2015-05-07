@@ -12,4 +12,8 @@ namespace controllers\interfaces;
  */
 interface iTweetController {
     //put your code here
+    
+    public function toTweet($tweet_string);
+    
+    public function programTweet($tweet_string);
 }

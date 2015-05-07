@@ -13,5 +13,5 @@ namespace controllers\interfaces;
 interface iSearchController {
     //put your code here
     
-    public function search();
+    public function search($id);
 }

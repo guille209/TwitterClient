@@ -15,4 +15,14 @@ include $_SERVER['DOCUMENT_ROOT'] . '/controllers/interfaces/iTweetController.ph
  */
 class tweetController implements interfaces\iTweetController {
     //put your code here
+    
+        
+     function toTweet($tweet_string){
+          $raw_response = $_SESSION["connection"]->get("statuses/update", array("status" => $tweet_string));
+          return "Tweet ".$tweet_string." tuiteado con exito!";
+     }
+    
+     function programTweet($tweet_string){
+         
+     }
 }

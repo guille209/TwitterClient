@@ -7,10 +7,18 @@
  */
 
 /**
- * Description of user
+ * Description of hashtagList
  *
- * @author Propietario
+ * @author bl0810
  */
-class user {
+class hashtagList {
     //put your code here
+    
+    protected $user_twitter_id;
+
+    /**
+     * @Column(type="string")
+     * @var string
+     **/
+    protected $hashtagList_name;
 }

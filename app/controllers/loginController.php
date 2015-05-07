@@ -53,6 +53,8 @@ class loginController implements interfaces\iLoginController {
         echo "<form action='/search' method='POST'><input name='criteria' type='text' placeholder='Buscar... '/></form>";
         echo "<a href='/showProfile'> Ver perfil usuario </a>";
         echo "<br><a href='/logout'> Logout </a>";
+        echo "<form action='/createTweet' method='POST'><input name='tweet' type='text' placeholder='Tweet... '/></form>";
+
     }
 
     function logout() {

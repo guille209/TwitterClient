@@ -4,6 +4,7 @@ require '../vendor/autoload.php';
 include '/controllers/loginController.php';
 include '/controllers/userController.php';
 include '/controllers/searchController.php';
+include '/controllers/tweetController.php';
 
 session_cache_limiter(false);
 session_start();
@@ -15,10 +16,11 @@ $app->get('/', 'home');
 $app->get('/home', 'home');
 $app->get('/showProfile', 'showProfile');
 $app->post('/search', 'search');
-$app->get('/hashtaglist/create/:name', 'createHashtagList');
-$app->delete('/hashtaglist/delete/:id', 'createHashtagList');
-$app->get('/hashtaglist/list', 'listHastagLists');
-$app->get('/hashtaglist/detail/:id', 'hashtagListDetail');
+$app->post('/createTweet', 'createTweet');
+//$app->get('/hashtaglist/create/:name', 'createHashtagList');
+//$app->delete('/hashtaglist/delete/:id', 'createHashtagList');
+//$app->get('/hashtaglist/list', 'listHastagLists');
+//$app->get('/hashtaglist/detail/:id', 'hashtagListDetail');
 
 
 $app->run();
@@ -47,6 +49,17 @@ function search() {
     $post_array = $app->request()->post();
     $response = $searchController->search($post_array['criteria']);
     echo $response;
+}
+
+function createTweet() {
+    $tweetController = new controllers\tweetController();
+    $app = \Slim\Slim::getInstance();
+    $post_array = $app->request()->post();
+    if(!isset($post_array['schedule'])){
+        echo $tweetController->toTweet($post_array['tweet']);
+    }else {
+        echo $tweetController->programTweet($post_array['tweet']);
+    }
 }
 
 function showProfile() {
