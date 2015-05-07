@@ -10,6 +10,7 @@ session_start();
 
 $app = new \Slim\Slim();
 $app->get('/login', 'login');
+$app->get('/logout', 'logout');
 $app->get('/home', 'home');
 $app->get('/showProfile', 'showProfile');
 $app->post('/search', 'search');

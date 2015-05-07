@@ -1,5 +1,7 @@
 <?php
+
 namespace controllers;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -11,13 +13,12 @@ namespace controllers;
  *
  * @author Propietario
  */
-class userController{
+class userController {
 
-    function showProfile(){
+    function showProfile() {
         //var_dump($_SESSION["acces_token"]["screen_name"]);
-        $profile = $_SESSION["connection"]->get("users/show",array("screen_name" => $_SESSION["acces_token"]["screen_name"]));
+        $profile = $_SESSION["connection"]->get("users/show", array("screen_name" => $_SESSION["access_token"]["screen_name"]));
         var_dump($profile);
     }
-    
-    
+
 }
