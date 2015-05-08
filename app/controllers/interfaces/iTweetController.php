@@ -15,5 +15,5 @@ interface iTweetController {
     
     public function toTweet($tweet_string);
     
-    public function programTweet($tweet_string);
+    public function programTweet($tweet_string,$time);
 }

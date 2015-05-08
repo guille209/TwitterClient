@@ -18,11 +18,12 @@ class tweetController implements interfaces\iTweetController {
     
         
      function toTweet($tweet_string){
+          echo "voy a tuitear ".$tweet_string;
           $raw_response = $_SESSION["connection"]->get("statuses/update", array("status" => $tweet_string));
           return "Tweet ".$tweet_string." tuiteado con exito!";
      }
     
-     function programTweet($tweet_string){
+     function programTweet($tweet_string,$time){
          
      }
 }
