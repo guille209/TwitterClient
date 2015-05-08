@@ -18,7 +18,5 @@ interface iLoginController {
 
     public function login();
 
-    public function home();
-
     public function logout();
 }
