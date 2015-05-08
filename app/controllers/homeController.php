@@ -1,6 +1,7 @@
 <?php
 
 namespace controllers;
+
 include $_SERVER['DOCUMENT_ROOT'] . '/controllers/interfaces/iHomeController.php';
 
 use Abraham\TwitterOAuth\TwitterOAuth;
@@ -17,10 +18,11 @@ use Abraham\TwitterOAuth\TwitterOAuth;
  * @author bl0810
  */
 class homeController {
+
     //put your code here
-    
-        function home() {
-        if (!isset($_SESSION['access_token']) && isset($_REQUEST['oauth_verifier'])) {
+
+    function home() {
+        if (!isset($_SESSION['userLogged'])) {
             $request_token = [];
             $request_token['oauth_token'] = $_SESSION['oauth_token'];
             $request_token['oauth_token_secret'] = $_SESSION['oauth_token_secret'];
@@ -30,18 +32,13 @@ class homeController {
             $connection = new TwitterOAuth($_SESSION['CONSUMER_KEY'], $_SESSION['CONSUMER_SECRET'], $access_token['oauth_token'], $access_token['oauth_token_secret']);
             $_SESSION["connection"] = $connection;
             $user = $_SESSION["connection"]->get("account/verify_credentials");
+            $_SESSION['userLogged'] = true;
         }
-
-        if (!isset($_SESSION['access_token'])) {
-            $app = \Slim\Slim::getInstance();
-            $app->redirect('/login');
-        }
-
         echo "<h1>Home</h1><br>";
         echo "<form action='/tweet/search' method='POST'><input name='criteria' type='text' placeholder='Buscar... '/></form>";
         echo "<a href='/user/showProfile'> Ver perfil usuario </a>";
         echo "<br><a href='/logout'> Logout </a>";
         echo "<form action='/tweet/create' method='POST'><input name='tweet' type='text' placeholder='Tweet... '/></form>";
-
     }
+
 }

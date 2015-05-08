@@ -12,20 +12,26 @@ session_cache_limiter(false);
 session_start();
 
 $app = new \Slim\Slim();
-$app->add(new \securityMiddleware());
+$authenticate = function() {
+    $app = \Slim\Slim::getInstance();
+    return function() use($app) {
+        if (!isset($_SESSION['userLogged']) && !isset($_REQUEST['oauth_verifier'])) {
+            echo"Redirecciono a login-..";
+            $app->redirect('/login');
+        }
+    };
+};
 $app->get('/login', 'login');
 $app->get('/logout', 'logout');
-$app->get('/', 'home');
-$app->get('/home', 'home');
-$app->get('/user/showProfile', 'showProfile');
-$app->post('/tweet/search', 'search');
-$app->post('/tweet/create', 'createTweet');
+$app->get('/', $authenticate(), 'home');
+$app->get('/home', $authenticate(), 'home');
+$app->get('/user/showProfile', $authenticate(), 'showProfile');
+$app->post('/tweet/search', $authenticate(), 'search');
+$app->post('/tweet/create', $authenticate(), 'createTweet');
 //$app->get('/hashtaglist/create/:name', 'createHashtagList');
 //$app->delete('/hashtaglist/delete/:id', 'createHashtagList');
 //$app->get('/hashtaglist/list', 'listHastagLists');
 //$app->get('/hashtaglist/detail/:id', 'hashtagListDetail');
-
-
 $app->run();
 
 function login() {
@@ -46,22 +52,22 @@ function home() {
     echo $response;
 }
 
-function search(){
+function search() {
     $searchController = new controllers\searchController();
     $app = \Slim\Slim::getInstance();
     $post_array = $app->request()->post();
     $response = $searchController->search($post_array['criteria']);
     echo $response;
-} 
+}
 
 function createTweet() {
     $tweetController = new controllers\tweetController();
     $app = \Slim\Slim::getInstance();
     $post_array = $app->request()->post();
-    if(!isset($post_array['schedule'])){
+    if (!isset($post_array['schedule'])) {
         echo $tweetController->toTweet($post_array['tweet']);
-    }else {
-        echo $tweetController->programTweet($post_array['tweet'],$post_array['time']);
+    } else {
+        echo $tweetController->programTweet($post_array['tweet'], $post_array['time']);
     }
 }
 

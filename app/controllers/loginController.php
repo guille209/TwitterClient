@@ -37,6 +37,8 @@ class loginController implements interfaces\iLoginController {
     function logout() {
         unset($_SESSION['access_token']);
         unset($_REQUEST['oauth_verifier']);
+        unset($_SESSION['userLogged']);
+
         $app = \Slim\Slim::getInstance();
         $app->redirect('/login');
     }
