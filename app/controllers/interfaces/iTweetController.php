@@ -18,4 +18,6 @@ interface iTweetController {
     public function programTweet($tweet_string,$time);
     
     public function replyTweet($screen_name,$tweet_string,$in_reply_to_status_id);
+    
+    public function destroyTweet($id_tweet);
 }

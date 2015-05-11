@@ -12,7 +12,7 @@ namespace controllers\interfaces;
  *
  * @author Propietario
  */
-interface iLoginController {
+interface iRegisterController {
 
     //put your code here
 

@@ -33,4 +33,10 @@ class tweetController implements interfaces\iTweetController {
           $app = \Slim\Slim::getInstance();
           $app->redirect('/home');
      }
+     
+     function destroyTweet($id_tweet) {
+          $raw_response = $_SESSION["connection"]->post("statuses/destroy", array("id" => $id_tweet));
+          $json_string = json_encode($raw_response, JSON_UNESCAPED_SLASHES);
+          return $json_string;
+     }
 }

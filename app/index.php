@@ -1,7 +1,7 @@
 <?php
 
 require '../vendor/autoload.php';
-include '/controllers/loginController.php';
+include '/controllers/registerController.php';
 include '/controllers/userController.php';
 include '/controllers/searchController.php';
 include '/controllers/tweetController.php';
@@ -28,6 +28,7 @@ $app->get('/home', $authenticate(), 'home');
 $app->get('/user/showProfile', $authenticate(), 'showProfile');
 $app->post('/tweet/search', $authenticate(), 'search');
 $app->post('/tweet/create', $authenticate(), 'createTweet');
+$app->post('/tweet/destroy', $authenticate(), 'destroyTweet');
 $app->post('/tweet/reply', $authenticate(), 'replyTweet');
 
 //$app->get('/hashtaglist/create/:name', 'createHashtagList');
@@ -37,13 +38,13 @@ $app->post('/tweet/reply', $authenticate(), 'replyTweet');
 $app->run();
 
 function login() {
-    $logInController = new controllers\loginController();
+    $logInController = new controllers\registerController();
     $response = $logInController->login();
     echo $response;
 }
 
 function logout() {
-    $logInController = new controllers\loginController();
+    $logInController = new controllers\registerController();
     $response = $logInController->logout();
     echo $response;
 }
@@ -71,6 +72,15 @@ function createTweet() {
     } else {
         $tweetController->programTweet($post_array['tweet'], $post_array['time']);
     }
+}
+
+function destroyTweet(){
+    $tweetController = new controllers\tweetController();
+    $app = \Slim\Slim::getInstance();
+    $post_array = $app->request()->post();
+    echo $tweetController->destroyTweet($post_array['id_tweet']);
+    $app = \Slim\Slim::getInstance();
+    $app->redirect('/home');
 }
 
 function replyTweet() {
