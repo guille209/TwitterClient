@@ -29,6 +29,7 @@ $app->get('/user/showProfile', $authenticate(), 'showProfile');
 $app->post('/tweet/search', $authenticate(), 'search');
 $app->post('/tweet/create', $authenticate(), 'createTweet');
 $app->post('/tweet/destroy', $authenticate(), 'destroyTweet');
+$app->post('/tweet/reply', $authenticate(), 'replyTweet');
 
 //$app->get('/hashtaglist/create/:name', 'createHashtagList');
 //$app->delete('/hashtaglist/delete/:id', 'createHashtagList');
@@ -67,23 +68,30 @@ function createTweet() {
     $app = \Slim\Slim::getInstance();
     $post_array = $app->request()->post();
     if (!isset($post_array['schedule'])) {
-        if(isset($post_array['in_reply_to_status_id']) && isset($post_array['screen_name'])){
-            $tweetController->replyTweet($post_array['screen_name'],$post_array['tweet'],$post_array['in_reply_to_status_id']);
-        }else {//Tweet normal
-            $tweetController->toTweet($post_array['tweet']);
-        }
+        $tweetController->toTweet($post_array['tweet']);
     } else {//Tweet programado
         $tweetController->programTweet($post_array['tweet'], $post_array['time']);
     }
 }
 
-function destroyTweet(){
+function destroyTweet() {
     $tweetController = new controllers\tweetController();
     $app = \Slim\Slim::getInstance();
     $post_array = $app->request()->post();
     echo $tweetController->destroyTweet($post_array['id_tweet']);
     $app = \Slim\Slim::getInstance();
     $app->redirect('/home');
+}
+
+function replyTweet() {
+    $tweetController = new controllers\tweetController();
+    $app = \Slim\Slim::getInstance();
+    $post_array = $app->request()->post();
+    if (isset($post_array['in_reply_to_status_id']) && isset($post_array['screen_name']) && isset($post_array['tweet'])) {
+        $tweetController->replyTweet($post_array['screen_name'], $post_array['tweet'], $post_array['in_reply_to_status_id']);
+    }else{
+        //codigo de error de parametros
+    }
 }
 
 function showProfile() {
