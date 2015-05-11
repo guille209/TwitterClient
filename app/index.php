@@ -65,9 +65,9 @@ function createTweet() {
     $app = \Slim\Slim::getInstance();
     $post_array = $app->request()->post();
     if (!isset($post_array['schedule'])) {
-        echo $tweetController->toTweet($post_array['tweet']);
+        $tweetController->toTweet($post_array['tweet']);
     } else {
-        echo $tweetController->programTweet($post_array['tweet'], $post_array['time']);
+        $tweetController->programTweet($post_array['tweet'], $post_array['time']);
     }
 }
 
