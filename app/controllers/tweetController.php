@@ -27,4 +27,10 @@ class tweetController implements interfaces\iTweetController {
      function programTweet($tweet_string,$time){
          
      }
+     
+     function replyTweet($screen_name,$tweet_string,$in_reply_to_status_id){
+          $raw_response = $_SESSION["connection"]->post("statuses/update", array("status" => $screen_name." ".$tweet_string,"in_reply_to_status_id" => $in_reply_to_status_id));
+          $app = \Slim\Slim::getInstance();
+          $app->redirect('/home');
+     }
 }

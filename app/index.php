@@ -28,6 +28,8 @@ $app->get('/home', $authenticate(), 'home');
 $app->get('/user/showProfile', $authenticate(), 'showProfile');
 $app->post('/tweet/search', $authenticate(), 'search');
 $app->post('/tweet/create', $authenticate(), 'createTweet');
+$app->post('/tweet/reply', $authenticate(), 'replyTweet');
+
 //$app->get('/hashtaglist/create/:name', 'createHashtagList');
 //$app->delete('/hashtaglist/delete/:id', 'createHashtagList');
 //$app->get('/hashtaglist/list', 'listHastagLists');
@@ -69,6 +71,13 @@ function createTweet() {
     } else {
         $tweetController->programTweet($post_array['tweet'], $post_array['time']);
     }
+}
+
+function replyTweet() {
+    $tweetController = new controllers\tweetController();
+    $app = \Slim\Slim::getInstance();
+    $post_array = $app->request()->post();
+    $tweetController->replyTweet($post_array['screen_name'],$post_array['tweet'],$post_array['in_reply_to_status_id']);
 }
 
 function showProfile() {
