@@ -1,8 +1,6 @@
 <?php
 
 namespace controllers;
-include $_SERVER['DOCUMENT_ROOT'] . '/controllers/interfaces/iRegisterController.php';
-
 use Abraham\TwitterOAuth\TwitterOAuth;
 
 /**

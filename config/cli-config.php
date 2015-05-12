@@ -1,4 +1,10 @@
+
 <?php
+
+
+/*
+TIENE QUE SER UN ARCHIVO PEQUEÑO PIDIENDOLO AL BOOTSTRAP EL ENTITYNAMANGER
+*/
 // (1) Autocargamos clases
 require_once '/vendor/doctrine/common/lib/Doctrine/Common/ClassLoader.php';
 $classLoader = new DoctrineCommonClassLoader('Doctrine');

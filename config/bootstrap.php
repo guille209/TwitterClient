@@ -1,4 +1,9 @@
 <?php
+/*
+ * 
+ * Todooo lo de doctrine
+ * 
+ */
  
 require_once 'vendor/autoload.php';
  

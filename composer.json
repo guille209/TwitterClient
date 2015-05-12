@@ -17,5 +17,10 @@
         "abraham/twitteroauth": "0.5.2",
         "slim/slim": "~2.6"
         
+    },
+     "autoload": {
+        "psr-4": {
+            "": "app/"
+        }
     }
 }

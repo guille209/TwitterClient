@@ -7,4 +7,5 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Abraham\\TwitterOAuth\\' => array($vendorDir . '/abraham/twitteroauth/src'),
+    '' => array($baseDir . '/app'),
 );

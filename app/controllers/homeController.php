@@ -2,8 +2,6 @@
 
 namespace controllers;
 
-include $_SERVER['DOCUMENT_ROOT'] . '/controllers/interfaces/iHomeController.php';
-
 use Abraham\TwitterOAuth\TwitterOAuth;
 
 /*
