@@ -27,7 +27,7 @@ $directories = array(getcwd(), getcwd() . DIRECTORY_SEPARATOR . 'config');
 $configFile = null;
 foreach ($directories as $directory) {
     $configFile = $directory . DIRECTORY_SEPARATOR . 'cli-config.php';
-
+    echo $configFile."\n\n\n";
     if (file_exists($configFile)) {
         break;
     }

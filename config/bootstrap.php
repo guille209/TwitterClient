@@ -5,19 +5,19 @@
  * 
  */
  
-require_once 'vendor/autoload.php';
+require_once '../vendor/autoload.php';
  
 use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;
  
-$paths = array("/entities");
+$paths = array("/config/yaml");
 $isDevMode = false;
  
 // the connection configuration
 $dbParams = array(
     'driver'   => 'pdo_mysql',
-    'user'     => 'root',
-    'password' => 'usbw',
+    'user'     => 'twitterClient',
+    'password' => 'root',
     'dbname'   => 'twitterClient',
     'host'     => 'localhost',
     'port'     => '3307',
