@@ -6,22 +6,14 @@
  */
  
 require_once '../vendor/autoload.php';
+require_once 'config.php';
  
 use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;
  
-$paths = array("/config/yaml");
+$path = array("yml");
 $isDevMode = false;
  
-// the connection configuration
-$dbParams = array(
-    'driver'   => 'pdo_mysql',
-    'user'     => 'twitterClient',
-    'password' => 'root',
-    'dbname'   => 'twitterClient',
-    'host'     => 'localhost',
-    'port'     => '3307',
-);
- 
-$config = Setup::createAnnotationMetadataConfiguration($paths, $isDevMode);
+$config = Setup::createYAMLMetadataConfiguration($path, $isDevMode);
+$config = 
 $entityManager = EntityManager::create($dbParams, $config);

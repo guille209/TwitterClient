@@ -1,0 +1,27 @@
+User:
+    type: entity
+    table: user
+    id:
+        userId:
+            type: string
+            nullable: false
+            length: 128
+            fixed: false
+            id: true
+            column: user_id
+            generator:
+                strategy: IDENTITY
+    fields:
+        oauthToken:
+            type: string
+            nullable: false
+            length: 256
+            fixed: false
+            column: oauth_token
+        oauthTokenSecret:
+            type: string
+            nullable: false
+            length: 256
+            fixed: false
+            column: oauth_token_secret
+    lifecycleCallbacks: {  }
