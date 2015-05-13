@@ -28,7 +28,6 @@ $app->post('/tweet/reply', $authenticate(), 'replyTweet');
 //$app->delete('/hashtaglist/delete/:id', 'createHashtagList');
 //$app->get('/hashtaglist/list', 'listHastagLists');
 //$app->get('/hashtaglist/detail/:id', 'hashtagListDetail');
-$app->run();
 
 function login() {
     $logInController = new controllers\registerController();
