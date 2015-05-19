@@ -37,6 +37,8 @@ class homeController {
         echo "<a href='/user/showProfile'> Ver perfil usuario </a>";
         echo "<br><a href='/logout'> Logout </a>";
         echo "<form action='/tweet/create' method='POST'><input name='tweet' type='text' placeholder='Tweet... '/></form>";
+        
+        
     }
 
 }
