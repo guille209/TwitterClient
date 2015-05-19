@@ -18,6 +18,7 @@ $app->get('/login', 'login');
 $app->get('/logout', 'logout');
 $app->get('/', $authenticate(), 'home');
 $app->get('/home', $authenticate(), 'home');
+$app->get('tweet/nearby', $authenticate(), 'nearbyTweets');
 $app->get('/user/showProfile', $authenticate(), 'showProfile');
 $app->post('/tweet/search', $authenticate(), 'search');
 $app->post('/tweet/create', $authenticate(), 'createTweet');
@@ -81,7 +82,7 @@ function replyTweet() {
     $post_array = $app->request()->post();
     if (isset($post_array['in_reply_to_status_id']) && isset($post_array['screen_name']) && isset($post_array['tweet'])) {
         $tweetController->replyTweet($post_array['screen_name'], $post_array['tweet'], $post_array['in_reply_to_status_id']);
-    }else{
+    } else {
         //codigo de error de parametros
     }
 }
@@ -89,5 +90,15 @@ function replyTweet() {
 function showProfile() {
     $userController = new controllers\userController();
     $response = $userController->showProfile();
+    echo $response;
+}
+
+function nearbyTweets() {
+    $searchController = new controllers\searchController();
+    $app = \Slim\Slim::getInstance();
+    $post_array = $app->request()->post();
+    $latitud = $searchController->search($post_array['latitud']);
+    $longitud = $searchController->search($post_array['longitud']);
+    $response = $searchController->searchNearbyTweets($latitud,$longitud);
     echo $response;
 }
