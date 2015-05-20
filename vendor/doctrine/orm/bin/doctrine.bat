@@ -6,4 +6,4 @@ GOTO RUN
 :USE_PEAR_PATH
 set PHPBIN=%PHP_PEAR_PHP_BIN%
 :RUN
-"%PHPBIN%" "C:\Users\bl0810\Documents\NetBeansProjects\TwitterClient\vendor\doctrine\orm\bin\doctrine" %*
+"%PHPBIN%" "C:\Users\Propietario\Google Drive\Master\13. PFM\Proyecto\vendor\doctrine\orm\bin\doctrine" %*
