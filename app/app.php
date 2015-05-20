@@ -18,7 +18,7 @@ $app->get('/login', 'login');
 $app->get('/logout', 'logout');
 $app->get('/', $authenticate(), 'home');
 $app->get('/home', $authenticate(), 'home');
-$app->get('tweet/nearby', $authenticate(), 'nearbyTweets');
+$app->post('/tweet/nearby', $authenticate(), 'nearbyTweets');
 $app->get('/user/showProfile', $authenticate(), 'showProfile');
 $app->post('/tweet/search', $authenticate(), 'search');
 $app->post('/tweet/create', $authenticate(), 'createTweet');
@@ -97,8 +97,8 @@ function nearbyTweets() {
     $searchController = new controllers\searchController();
     $app = \Slim\Slim::getInstance();
     $post_array = $app->request()->post();
-    $latitud = $searchController->search($post_array['latitud']);
-    $longitud = $searchController->search($post_array['longitud']);
-    $response = $searchController->searchNearbyTweets($latitud,$longitud);
+    $latitud = $post_array['latitud'];
+    $longitud = $post_array['longitud'];
+    $response = $searchController->searchNearbyTweets($latitud, $longitud);
     echo $response;
 }

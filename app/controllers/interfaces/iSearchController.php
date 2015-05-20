@@ -17,6 +17,12 @@ interface iSearchController {
     //put your code here
 
     public function search($id);
-
-    public function searNearbyTweets($latitud,$longitud);
+    
+    
+    /*
+     * Devuelve una coleccion de 50 tweets cercanos a la 
+     * posicion del usuario, solo tweets recientes y en
+     *  un radio de 1 km
+     */
+    public function searchNearbyTweets($latitud,$longitud);
 }

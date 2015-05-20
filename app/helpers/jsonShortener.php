@@ -27,6 +27,7 @@ class jsonShortener {
             $new_array[$tweetIndex]['favorite_count'] = $value['favorite_count'];
             $new_array[$tweetIndex]['favorited'] = $value['favorited'];
             $new_array[$tweetIndex]['retweeted'] = $value['retweeted'];
+            //$new_array[$tweetIndex]['location'] = $value['location'];
             $new_array[$tweetIndex]['user']['id'] = $value['user']['id'];
             $new_array[$tweetIndex]['user']['name'] = $value['user']['name'];
             $new_array[$tweetIndex]['user']['screen_name'] = $value['user']['screen_name'];
@@ -40,6 +41,7 @@ class jsonShortener {
             $tweetIndex++;
         }
         return jsonShortener::jsonRemoveUnicodeSequences(json_encode($new_array, JSON_UNESCAPED_SLASHES));
+       // return $json_string;
     }
 
     public static function shortenHomeTweet($json_string) {
