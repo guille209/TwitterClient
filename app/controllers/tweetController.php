@@ -1,6 +1,5 @@
 <?php
 namespace controllers;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -23,8 +22,13 @@ class tweetController implements interfaces\iTweetController {
           $app->redirect('/home');
      }
     
-     function programTweet($tweet_string,$time){
-         
+     function programTweet($tweet_string,$date){
+         $tweet = new \models\entities\Tweet();
+         $tweet->setText($tweet_string);
+         $tweet->setDate($date);
+         $tweet->setUserId($_SESSION['access_token']['oauth_token']);
+         $tweetDao = new \models\daos\TweetDao(); 
+         $tweetDao->saveTweet($tweet);
      }
      
      function replyTweet($screen_name,$tweet_string,$in_reply_to_status_id){
