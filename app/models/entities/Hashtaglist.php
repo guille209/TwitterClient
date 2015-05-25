@@ -1,38 +1,27 @@
 <?php
-namespace models\entities;
 
+namespace models\entities;
 
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Hashtaglist
- *
- * @ORM\Table(name="hashtaglist")
- * @ORM\Entity
  */
 class Hashtaglist
 {
     /**
      * @var integer
-     *
-     * @ORM\Column(name="hashtaglist_id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $hashtaglistId;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="user_id", type="string", length=128, nullable=false)
      */
     private $userId;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="hashtag", type="string", length=256, nullable=false)
      */
     private $hashtag;
 

@@ -1,4 +1,5 @@
 <?php
+
 namespace models\entities;
 
 
@@ -6,39 +7,26 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Tweet
- *
- * @ORM\Table(name="tweet")
- * @ORM\Entity
  */
 class Tweet
 {
     /**
      * @var integer
-     *
-     * @ORM\Column(name="tweet_id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $tweetId;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="user_id", type="string", length=152, nullable=false)
      */
     private $userId;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="text", type="string", length=256, nullable=false)
      */
     private $text;
 
     /**
      * @var \DateTime
-     *
-     * @ORM\Column(name="date", type="date", nullable=false)
      */
     private $date;
 

@@ -7,7 +7,6 @@
  */
 
 require_once '../vendor/autoload.php';
-require_once 'config.php';
 
 use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;
@@ -15,7 +14,31 @@ use Doctrine\ORM\EntityManager;
 $path = array("yml");
 $isDevMode = false;
 
+$dbConfig = array(
+    'driver' => 'pdo_mysql',
+    'user' => 'twitterClient',
+    'password' => 'root',
+    'dbname' => 'twitterClient',
+    'host' => 'localhost',
+);
+$config = new Doctrine\ORM\Configuration();
+
 $config = Setup::createYAMLMetadataConfiguration($path, $isDevMode);
 
+$em = EntityManager::create($dbConfig, $config);
 
-$em = EntityManager::create($dbParams, $config);
+
+
+
+
+
+
+/*$driver = new \Doctrine\ORM\Mapping\Driver\SimplifiedYamlDriver($path);
+
+$config->setMetadataDriverImpl($driver);
+
+$config->setProxyDir('proxies');
+$config->setProxyNamespace('Proxies');
+ * 
+ * */
+ 

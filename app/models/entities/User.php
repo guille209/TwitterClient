@@ -1,38 +1,27 @@
 <?php
-namespace models\entities;
 
+namespace models\entities;
 
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * User
- *
- * @ORM\Table(name="user")
- * @ORM\Entity
  */
 class User
 {
     /**
      * @var string
-     *
-     * @ORM\Column(name="user_id", type="string", length=128)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $userId;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="oauth_token", type="string", length=256, nullable=false)
      */
     private $oauthToken;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="oauth_token_secret", type="string", length=256, nullable=false)
      */
     private $oauthTokenSecret;
 

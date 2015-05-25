@@ -6,6 +6,8 @@
  * and open the template in the editor.
  */
 require_once '../app/app.php';
+require '../config/bootstrap.php';
 
+$_SESSION['em'] = $em;
 $app = \Slim\Slim::getInstance();
 $app->run();
