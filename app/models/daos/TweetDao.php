@@ -15,8 +15,9 @@ namespace models\daos;
 class TweetDao {
 
     function saveTweet($tweet) {
-       $_SESSION['em']->persist($tweet);
-       $_SESSION['em']->flush();
+        $em = GetEntityManager();
+        $em->persist($tweet);
+        $em->flush();
     }
 
     // Get All Tweet

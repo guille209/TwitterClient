@@ -21,13 +21,13 @@ use Symfony\Component\Console\Helper\HelperSet;
 use Doctrine\ORM\Tools\Console\ConsoleRunner;
 
 (@include_once __DIR__ . '/../vendor/autoload.php') || @include_once __DIR__ . '/../../../autoload.php';
-chdir('../../../../');
-chdir('config');
+
 $directories = array(getcwd(), getcwd() . DIRECTORY_SEPARATOR . 'config');
+
 $configFile = null;
 foreach ($directories as $directory) {
-
     $configFile = $directory . DIRECTORY_SEPARATOR . 'cli-config.php';
+
     if (file_exists($configFile)) {
         break;
     }

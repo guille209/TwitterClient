@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'models\\entities\\' => array($baseDir . '/app/models/entities'),
+    'controllers\\' => array($baseDir . '/app/controllers'),
     'Abraham\\TwitterOAuth\\' => array($vendorDir . '/abraham/twitteroauth/src'),
     '' => array($baseDir . '/app'),
 );

@@ -1,5 +1,4 @@
-Hashtaglist:
-    models\entities\Hashtaglist:
+\models\entities\Hashtaglist:
     type: entity
     table: hashtaglist
     id:

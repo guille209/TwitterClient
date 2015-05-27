@@ -1,44 +1,31 @@
 <?php
+require_once __DIR__ . '/../vendor/autoload.php';
 
-/*
- * 
- * Todo lo de doctrine
- * 
- */
-
-require_once '../vendor/autoload.php';
-
-use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\Configuration;
+use Doctrine\ORM\Mapping\Driver\SimplifiedYamlDriver;
 
-$path = array("yml");
-$isDevMode = false;
+function GetEntityManager() {
+    
 
-$dbConfig = array(
-    'driver' => 'pdo_mysql',
-    'user' => 'twitterClient',
-    'password' => 'root',
-    'dbname' => 'twitterClient',
-    'host' => 'localhost',
-);
-$config = new Doctrine\ORM\Configuration();
+    $namespaces = array(
+    __DIR__ . '\yml' => 'models\entities',
+  );
 
-$config = Setup::createYAMLMetadataConfiguration($path, $isDevMode);
+    $config = new Configuration;
+    $driverImpl = new SimplifiedYamlDriver($namespaces);
+    $config->setMetadataDriverImpl($driverImpl);
+    $config->setProxyDir('\xampp\tmp');
+    $config->setProxyNamespace('app\config\Proxies');
 
-$em = EntityManager::create($dbConfig, $config);
+    // the connection configuration
+    $dbParams = array(
+        'driver' => 'pdo_mysql',
+        'user' => 'twitterClient',
+        'password' => 'root',
+        'dbname' => 'twitterClient',
+        'host' => 'localhost',
+    );
 
-
-
-
-
-
-
-/*$driver = new \Doctrine\ORM\Mapping\Driver\SimplifiedYamlDriver($path);
-
-$config->setMetadataDriverImpl($driver);
-
-$config->setProxyDir('proxies');
-$config->setProxyNamespace('Proxies');
- * 
- * */
- 
+    return EntityManager::create($dbParams, $config);
+}

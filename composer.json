@@ -16,13 +16,12 @@
         "symfony/yaml": "2.*",
         "abraham/twitteroauth": "0.5.2",
         "slim/slim": "~2.6"
-        
+
     },
-     "autoload": {
+    "autoload": {
         "psr-4": {
             "": "app/",
-           "models\\entities\\": "app/models/entities/"
-            
+            "models\\entities\\": "app/models/entities"
         }
     }
 }

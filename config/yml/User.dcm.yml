@@ -1,5 +1,4 @@
-User:
-    \models\entities\User:
+\models\entities\User:
     type: entity
     table: user
     id:

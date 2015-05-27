@@ -3,8 +3,6 @@
 namespace models\entities;
 
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
  * User
  */
