@@ -1,4 +1,4 @@
-\models\entities\Tweet:
+models\entities\Tweet:
     type: entity
     table: tweet
     id:

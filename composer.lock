@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ab0c14cec82bb0b1eb4a1e5036da9435",
+    "hash": "c62839a3c928ede558bd2698166e61ae",
     "packages": [
         {
             "name": "abraham/twitteroauth",

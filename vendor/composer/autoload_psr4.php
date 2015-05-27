@@ -6,8 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'models\\entities\\' => array($baseDir . '/app/models/entities'),
-    'controllers\\' => array($baseDir . '/app/controllers'),
+    '\\models\\entities\\' => array($baseDir . '/app/models/entities'),
     'Abraham\\TwitterOAuth\\' => array($vendorDir . '/abraham/twitteroauth/src'),
     '' => array($baseDir . '/app'),
 );

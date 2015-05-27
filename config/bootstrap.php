@@ -11,6 +11,8 @@ function GetEntityManager() {
     $namespaces = array(
     __DIR__ . '\yml' => 'models\entities',
   );
+    
+    
 
     $config = new Configuration;
     $driverImpl = new SimplifiedYamlDriver($namespaces);
