@@ -39,16 +39,6 @@ class TweetDao {
         return $data;
     }
 
-    // Schedule Tweet
-// @param string Tweet
-// @param string Date to publish
-    function schedule_tweet($tweet, $publish_date) {
-        $query = "INSERT INTO tweets (tweet, publish_date, status)
-			  VALUES ('$tweet', '$publish_date', 0)";
-
-        mysql_query($query);
-    }
-
     // Change Tweet Status
 // Changing status from unpublished to publish
 // @param int Tweet ID 

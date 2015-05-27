@@ -1,28 +1,28 @@
-Tweet:
+User:
+    \models\entities\User:
     type: entity
-    table: tweet
+    table: user
     id:
-        tweetId:
-            type: integer
-            nullable: false
-            unsigned: false
-            id: true
-            column: tweet_id
-            generator:
-                strategy: IDENTITY
-    fields:
         userId:
             type: string
             nullable: false
-            length: 152
+            length: 128
             fixed: false
+            id: true
             column: user_id
-        text:
+            generator:
+                strategy: IDENTITY
+    fields:
+        oauthToken:
             type: string
             nullable: false
             length: 256
             fixed: false
-        date:
-            type: date
+            column: oauth_token
+        oauthTokenSecret:
+            type: string
             nullable: false
+            length: 256
+            fixed: false
+            column: oauth_token_secret
     lifecycleCallbacks: {  }

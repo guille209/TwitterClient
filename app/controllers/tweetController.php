@@ -33,7 +33,7 @@ class tweetController implements interfaces\iTweetController {
          $tweet->setDate($date);
          $tweet->setUserId($user);
          $tweetDao = new \models\daos\TweetDao(); 
-        // $tweetDao->saveTweet($tweet);
+         $tweetDao->saveTweet($tweet);
      }
      
      function replyTweet($screen_name,$tweet_string,$in_reply_to_status_id){
