@@ -7,6 +7,8 @@
  */
 
 namespace models\daos;
+
+use Doctrine\ORM\Query\ResultSetMapping;
 /**
  * Description of TweetDao
  *
@@ -50,25 +52,16 @@ class TweetDao {
         mysql_query($query);
     }
 
-    // Get Tweet to Publish
+    // Buscar tweets cuyo datetime es igual al del sistema y añadirlos al array que devuelvo
     function get_tweet_to_publish() {
-        $query = "SELECT *
-			  FROM tweets
-			  WHERE publish_date < now() AND status = 0";
-        $result = mysql_query($query);
-        $data = array();
-        $i = 0;
-        // Fetch result and re-format into array
-        while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
-            $data[$i]['id'] = $row['id'];
-            $data[$i]['tweet'] = $row['tweet'];
-            $data[$i]['publish_date'] = $row['publish_date'];
-            $data[$i]['status'] = $row['status'];
-            $i++;
-        }
-        // Flush resource, return result
-        mysql_free_result($result);
-        return $data;
+        $tweetsList = array();
+        $em = GetEntityManager();
+        $sql="SELECT * FROM tweet WHERE date =".new DateTime();
+        echo 'Query es '.$sql;
+        $rsm = new ResultSetMapping();
+        $em->createNativeQuery($sql, $rsm);
+        
+        
     }
 
 }
