@@ -62,14 +62,7 @@ function createTweet() {
     if (!isset($post_array['schedule'])) {
         $tweetController->toTweet($post_array['tweet']);
     } else {//Tweet programado
-        $year = $post_array['year'];
-        $month = $post_array['month'];
-        $day = $post_array['day'];
-        $hour = $post_array['hour'];
-        $minute = $post_array['minute'];
-        $date = new DateTime($year.'-'.$month.'-'.$day);
-        $date->setTime($hour, $minute);
-        $tweetController->programTweet($post_array['tweet'], $date);
+        $tweetController->programTweet($post_array['tweet'],$post_array['time']);
     }
 }
 

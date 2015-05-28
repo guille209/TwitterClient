@@ -23,6 +23,6 @@ models\entities\Tweet:
             length: 256
             fixed: false
         date:
-            type: date
+            type: datetime
             nullable: false
     lifecycleCallbacks: {  }

@@ -3,10 +3,9 @@ models\entities\User:
     table: user
     id:
         userId:
-            type: string
+            type: integer
             nullable: false
-            length: 128
-            fixed: false
+            unsigned: false
             id: true
             column: user_id
             generator:
