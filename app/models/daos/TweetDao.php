@@ -8,6 +8,7 @@
 
 namespace models\daos;
 
+
 use Doctrine\ORM\Query\ResultSetMapping;
 /**
  * Description of TweetDao
@@ -56,11 +57,12 @@ class TweetDao {
     function get_tweet_to_publish() {
         $tweetsList = array();
         $em = GetEntityManager();
-        $sql="SELECT * FROM tweet WHERE date =".new DateTime();
+        $dateTime = new \DateTime();
+        $sql="SELECT * FROM tweet WHERE date =".$dateTime->format('Y-m-d H:i:s');
         echo 'Query es '.$sql;
         $rsm = new ResultSetMapping();
         $em->createNativeQuery($sql, $rsm);
-        
+        var_dump($rsm);
         
     }
 

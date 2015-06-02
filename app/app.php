@@ -1,6 +1,7 @@
 <?php
 
 require_once '../vendor/autoload.php';
+require_once '../config/twitterConfig.php';
 session_cache_limiter(false);
 session_start();
 

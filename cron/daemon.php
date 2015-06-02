@@ -1,7 +1,9 @@
 <?php
+require_once '../config/twitterConfig.php';
+require_once '../config/bootstrap.php';
+require_once '../vendor/autoload.php';
 
-$consumer_key = $_SESSION['CONSUMER_KEY'];
-$consumer_secret = $_SESSION['CONSUMER_SECRET'];
+
 $tweet = $tweet = new \models\entities\Tweet();
 $tweetDao = new \models\daos\TweetDao();
 
@@ -11,9 +13,11 @@ while (true) {
     $tweets = $tweetDao->get_tweet_to_publish();
 
     if (!$tweets) {
+        echo'---------------------';
         echo "No hay tweets para tuitear";
-    } else {
-        echo "tweet encontrado para tuitear!";
+    } else{ 
+        echo '--------------------';
+        echo "TWEET ENCONTRADO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!";
     }
 
     foreach ($tweets as $tweet) {
@@ -21,7 +25,7 @@ while (true) {
         $userDao = new \models\daos\UserDao();
 
         $user = $userDao->getUserByTweet($tweet);
-        $connection = new TwitterOAuth($consumer_key, $consumer_secret, $user->getOauthToken(), $user->getOauthTokenSecret());
+        $connection = new TwitterOAuth(CONSUMER_KEY, CONSUMER_SECRET, $user->getOauthToken(), $user->getOauthTokenSecret());
         $connection->post('statuses/update', array('status' => $tweet->getText()));
         success_to_publish($tweet);
     }
