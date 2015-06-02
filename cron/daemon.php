@@ -12,7 +12,7 @@ while (true) {
     sleep(1);
     $tweets = $tweetDao->get_tweet_to_publish();
 
-    if (!$tweets) {
+ /*   if (!$tweets) {
         echo'---------------------';
         echo "No hay tweets para tuitear";
     } else{ 
@@ -28,5 +28,5 @@ while (true) {
         $connection = new TwitterOAuth(CONSUMER_KEY, CONSUMER_SECRET, $user->getOauthToken(), $user->getOauthTokenSecret());
         $connection->post('statuses/update', array('status' => $tweet->getText()));
         success_to_publish($tweet);
-    }
+    }*/
 }

@@ -8,8 +8,8 @@
 
 namespace models\daos;
 
-
 use Doctrine\ORM\Query\ResultSetMapping;
+
 /**
  * Description of TweetDao
  *
@@ -58,12 +58,18 @@ class TweetDao {
         $tweetsList = array();
         $em = GetEntityManager();
         $dateTime = new \DateTime();
-        $sql="SELECT * FROM tweet WHERE date =".$dateTime->format('Y-m-d H:i:s');
-        echo 'Query es '.$sql;
-        $rsm = new ResultSetMapping();
-        $em->createNativeQuery($sql, $rsm);
-        var_dump($rsm);
+        $sql = "SELECT * FROM tweet WHERE date LIKE=" . $dateTime->format('Y-m-d H:i:s');
         
+        $rsm = new ResultSetMapping;
+        $rsm->addEntityResult('models\entities\Tweet', 'tweet');
+        $rsm->addFieldResult('tweet', 'tweet_id', 'tweet_id');
+        $rsm->addFieldResult('tweet', 'user_id', 'user_id');
+        $rsm->addFieldResult('tweet', 'text', 'text');
+        $rsm->addFieldResult('tweet', 'date', 'date');
+
+        $query = $em->createNativeQuery('SELECT * FROM tweet', $rsm);
+        $tweets = $query->getResult();
+        var_dump($tweets);
     }
 
 }
