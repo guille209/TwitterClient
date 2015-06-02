@@ -41,7 +41,7 @@ class jsonShortener {
             $tweetIndex++;
         }
         return jsonShortener::jsonRemoveUnicodeSequences(json_encode($new_array, JSON_UNESCAPED_SLASHES));
-       // return $json_string;
+        //return $json_string;
     }
 
     public static function shortenHomeTweet($json_string) {
