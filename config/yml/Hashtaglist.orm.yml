@@ -1,27 +1,25 @@
-User:
+models\entities\Hashtaglist:
     type: entity
-    table: user
+    table: hashtaglist
     id:
+        hashtaglistId:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            column: hashtaglist_id
+            generator:
+                strategy: IDENTITY
+    fields:
         userId:
             type: string
             nullable: false
             length: 128
             fixed: false
-            id: true
             column: user_id
-            generator:
-                strategy: IDENTITY
-    fields:
-        oauthToken:
+        hashtag:
             type: string
             nullable: false
             length: 256
             fixed: false
-            column: oauth_token
-        oauthTokenSecret:
-            type: string
-            nullable: false
-            length: 256
-            fixed: false
-            column: oauth_token_secret
     lifecycleCallbacks: {  }

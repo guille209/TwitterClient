@@ -1,20 +1,33 @@
 <?php
-/*
- * 
- * Todo lo de doctrine
- * 
- */
- 
-require_once '../vendor/autoload.php';
-require_once 'config.php';
- 
-use Doctrine\ORM\Tools\Setup;
+require_once __DIR__ . '/../vendor/autoload.php';
+
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\Configuration;
+use Doctrine\ORM\Mapping\Driver\SimplifiedYamlDriver;
 
-  $path = array("yml");
-$isDevMode = false;
- 
-$config = Setup::createYAMLMetadataConfiguration($path, $isDevMode);
+function GetEntityManager() {
+    
 
+    $namespaces = array(
+    __DIR__ . '\yml' => 'models\entities',
+  );
+    
+    
 
-$entityManager = EntityManager::create($dbParams, $config);
+    $config = new Configuration;
+    $driverImpl = new SimplifiedYamlDriver($namespaces);
+    $config->setMetadataDriverImpl($driverImpl);
+    $config->setProxyDir('\xampp\tmp');
+    $config->setProxyNamespace('app\config\Proxies');
+
+    // the connection configuration
+    $dbParams = array(
+        'driver' => 'pdo_mysql',
+        'user' => 'twitterClient',
+        'password' => 'root',
+        'dbname' => 'twitterClient',
+        'host' => 'localhost',
+    );
+
+    return EntityManager::create($dbParams, $config);
+}

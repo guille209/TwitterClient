@@ -1,25 +1,28 @@
-Hashtaglist:
+models\entities\Tweet:
     type: entity
-    table: hashtaglist
+    table: tweet
     id:
-        hashtaglistId:
+        tweetId:
             type: integer
             nullable: false
             unsigned: false
             id: true
-            column: hashtaglist_id
+            column: tweet_id
             generator:
                 strategy: IDENTITY
     fields:
         userId:
             type: string
             nullable: false
-            length: 128
+            length: 152
             fixed: false
             column: user_id
-        hashtag:
+        text:
             type: string
             nullable: false
             length: 256
             fixed: false
+        date:
+            type: datetime
+            nullable: false
     lifecycleCallbacks: {  }

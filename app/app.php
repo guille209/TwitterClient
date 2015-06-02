@@ -9,7 +9,6 @@ $authenticate = function() {
     $app = \Slim\Slim::getInstance();
     return function() use($app) {
         if (!isset($_SESSION['userLogged']) && !isset($_REQUEST['oauth_verifier'])) {
-            echo"Redirecciono a login-..";
             $app->redirect('/login');
         }
     };
@@ -63,7 +62,7 @@ function createTweet() {
     if (!isset($post_array['schedule'])) {
         $tweetController->toTweet($post_array['tweet']);
     } else {//Tweet programado
-        $tweetController->programTweet($post_array['tweet'], $post_array['time']);
+        $tweetController->programTweet($post_array['tweet'],$post_array['time']);
     }
 }
 
