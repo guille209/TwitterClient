@@ -33,7 +33,7 @@ class TweetDao {
         $sql = "SELECT t FROM models\\entities\\Tweet t WHERE t.date = '".$dateTime->format('Y-m-d H:i').":00'";
         $query = $em->createQuery($sql);
         $tweetsList = $query->getResult();
-        echo $tweetsList;
+        return $tweetsList;
     }
 
 }

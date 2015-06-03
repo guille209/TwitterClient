@@ -1289,7 +1289,8 @@ class Slim
      * are returned to the HTTP client.
      */
     public function run()
-    {
+    {   
+
         set_error_handler(array('\Slim\Slim', 'handleErrors'));
 
         //Apply final outer middleware layers

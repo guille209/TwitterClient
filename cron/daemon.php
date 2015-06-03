@@ -3,6 +3,7 @@
 require_once '../config/twitterConfig.php';
 require_once '../config/bootstrap.php';
 require_once '../vendor/autoload.php';
+require_once '../vendor/abraham/twitteroauth/src/TwitterOAuth.php';
 
 
 $tweet = $tweet = new \models\entities\Tweet();
@@ -19,7 +20,7 @@ while (true) {
         $userDao = new \models\daos\UserDao();
 
         $user = $userDao->getUserByTweet($tweet);
-        $connection = new TwitterOAuth(CONSUMER_KEY, CONSUMER_SECRET, $user->getOauthToken(), $user->getOauthTokenSecret());
+        $connection = new \Abraham\TwitterOAuth\TwitterOAuth(CONSUMER_KEY, CONSUMER_SECRET, $user->getOauthToken(), $user->getOauthTokenSecret());
         $connection->post('statuses/update', array('status' => $tweet->getText()));
         $tweetDao->deleteTweet($tweet);
     }
