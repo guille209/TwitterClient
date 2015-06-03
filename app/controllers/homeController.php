@@ -40,6 +40,13 @@ class homeController {
         */
         $raw_response = $_SESSION["connection"]->get("statuses/home_timeline", array("count" => $this->numero_de_tweets));
         $json_string = json_encode($raw_response, JSON_UNESCAPED_SLASHES);
+        
+        echo "<a href='/user/showProfile'> Ver perfil usuario </a>";
+        echo "<br/><br/>";
+        echo "<form action='/hashtaglist/createHashtagList' method='POST'><input name='name' type='text' placeholder='Nombre Lista Hashtags '/></form>";
+        echo "<br/>";       
+        echo "USER HOME TIMELINE:";
+        echo "<br/>";
         return \helpers\jsonShortener::shortenHomeTweet($json_string);
     }
 

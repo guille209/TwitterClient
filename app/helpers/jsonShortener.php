@@ -1,3 +1,5 @@
+
+
 <?php
 
 namespace helpers;
@@ -75,6 +77,26 @@ class jsonShortener {
         //return mb_convert_encoding($struct, 'UTF-8');
         //return html_entity_decode(preg_replace("/U\+([0-9A-F]{4})/", "&#x\\1;", $string), ENT_NOQUOTES, 'UTF-8');
         return utf8_encode($string);
+    }
+
+    public static function shortenShowProfile($json_string) {
+        $array = json_decode($json_string, true);
+        $new_array = array();
+        foreach ($array as $key => $value) {
+            $new_array['screen_name'] = $value['screen_name'];
+            /* $new_array[$index]['id'] = $value['id'];
+              $new_array[$index]['name'] = $value['name']; */
+            //$new_array['screen_name'] = $value['screen_name'];
+            /* $new_array[$index]['description'] = $value['description'];
+              $new_array[$index]['followers_count'] = $value['followers_count'];
+              $new_array[$index]['friends_count'] = $value['friends_count'];
+              $new_array[$index]['verified'] = $value['verified'];
+              $new_array[$index]['following'] = $value['following'];
+              $new_array[$index]['profile_image_url'] = $value['profile_image_url'];
+             */
+        }
+        return jsonShortener::jsonRemoveUnicodeSequences(json_encode($new_array, JSON_UNESCAPED_SLASHES));
+        // return $json_string;
     }
 
 }

@@ -25,6 +25,12 @@ $app->post('/tweet/create', $authenticate(), 'createTweet');
 $app->post('/tweet/destroy', $authenticate(), 'destroyTweet');
 $app->post('/tweet/reply', $authenticate(), 'replyTweet');
 
+$app->post('/hashtaglist/createHashtagList', $authenticate(), 'createHashtagList');
+/*$app->get('/hashtaglist/showList', $authenticate(), 'showHashtagList');
+$app->get('/hashtaglist/showDetailsList', $authenticate(), 'showDetailsHashtagList');
+$app->post('/hashtaglist/deleteList', $authenticate(), 'deleteHashtagList');*/
+
+
 //$app->get('/hashtaglist/create/:name', 'createHashtagList');
 //$app->delete('/hashtaglist/delete/:id', 'createHashtagList');
 //$app->get('/hashtaglist/list', 'listHastagLists');
