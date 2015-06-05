@@ -21,7 +21,9 @@ while (true) {
 
         $user = $userDao->getUserByTweet($tweet);
         $connection = new \Abraham\TwitterOAuth\TwitterOAuth(CONSUMER_KEY, CONSUMER_SECRET, $user->getOauthToken(), $user->getOauthTokenSecret());
+        echo "Connection obtenida...";
         $connection->post('statuses/update', array('status' => $tweet->getText()));
+        echo "Post hecho";
         $tweetDao->deleteTweet($tweet);
     }
 }

@@ -20,9 +20,10 @@ class TweetDao {
         $em->persist($tweet);
         $em->flush();
     }
-//Por hacer
+
     function deleteTweet($tweet) {
-        
+        $em->remove($tweet);
+        $em->flush();
     }
 
     // Buscar tweets cuyo datetime es igual al del sistema y añadirlos al array que devuelvo
@@ -30,7 +31,7 @@ class TweetDao {
         $tweetsList = array();
         $em = GetEntityManager();
         $dateTime = new \DateTime();
-        $sql = "SELECT t FROM models\\entities\\Tweet t WHERE t.date = '".$dateTime->format('Y-m-d H:i').":00'";
+        $sql = "SELECT t FROM models\\entities\\Tweet t WHERE t.date = '" . $dateTime->format('Y-m-d H:i') . ":00'";
         $query = $em->createQuery($sql);
         $tweetsList = $query->getResult();
         return $tweetsList;
