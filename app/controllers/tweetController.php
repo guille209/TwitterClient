@@ -23,8 +23,8 @@ class tweetController implements interfaces\iTweetController {
     
      function programTweet($tweet_string,$date){ 
          $user = new \models\entities\User();
-         $user->setOauthToken($_SESSION['oauth_token']);
-         $user->setOauthTokenSecret($_SESSION['oauth_token_secret']); 
+         $user->setOauthToken($_SESSION['access_token']['oauth_token']);
+         $user->setOauthTokenSecret($_SESSION['access_token']['oauth_token_secret']); 
          $userDao = new \models\daos\UserDao(); 
          $userDao->saveUser($user);         
          
