@@ -22,7 +22,7 @@ class TweetDao {
     }
 
     function deleteTweet($tweet) {
-        //$em = GetEntityManager();
+        $em = GetEntityManager();
         $em->remove($tweet);
         $em->flush();
     }

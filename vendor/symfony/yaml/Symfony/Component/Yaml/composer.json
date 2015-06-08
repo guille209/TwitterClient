@@ -3,7 +3,7 @@
     "type": "library",
     "description": "Symfony Yaml Component",
     "keywords": [],
-    "homepage": "https://symfony.com",
+    "homepage": "http://symfony.com",
     "license": "MIT",
     "authors": [
         {
@@ -12,22 +12,20 @@
         },
         {
             "name": "Symfony Community",
-            "homepage": "https://symfony.com/contributors"
+            "homepage": "http://symfony.com/contributors"
         }
     ],
     "require": {
-        "php": ">=5.3.9"
-    },
-    "require-dev": {
-        "symfony/phpunit-bridge": "~2.7"
+        "php": ">=5.3.3"
     },
     "autoload": {
-        "psr-4": { "Symfony\\Component\\Yaml\\": "" }
+        "psr-0": { "Symfony\\Component\\Yaml\\": "" }
     },
+    "target-dir": "Symfony/Component/Yaml",
     "minimum-stability": "dev",
     "extra": {
         "branch-alias": {
-            "dev-master": "2.7-dev"
+            "dev-master": "2.6-dev"
         }
     }
 }

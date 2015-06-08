@@ -52,7 +52,7 @@ class InlineTest extends \PHPUnit_Framework_TestCase
 
         $required_locales = array('fr_FR.UTF-8', 'fr_FR.UTF8', 'fr_FR.utf-8', 'fr_FR.utf8', 'French_France.1252');
         if (false === setlocale(LC_ALL, $required_locales)) {
-            $this->markTestSkipped('Could not set any of required locales: '.implode(', ', $required_locales));
+            $this->markTestSkipped('Could not set any of required locales: '.implode(", ", $required_locales));
         }
 
         $this->assertEquals('1.2', Inline::dump(1.2));
@@ -194,14 +194,6 @@ class InlineTest extends \PHPUnit_Framework_TestCase
             array("'#cfcfcf'", '#cfcfcf'),
             array('::form_base.html.twig', '::form_base.html.twig'),
 
-            // Pre-YAML-1.2 booleans
-            array("'y'", 'y'),
-            array("'n'", 'n'),
-            array("'yes'", 'yes'),
-            array("'no'", 'no'),
-            array("'on'", 'on'),
-            array("'off'", 'off'),
-
             array('2007-10-30', mktime(0, 0, 0, 10, 30, 2007)),
             array('2007-10-30T02:59:43Z', gmmktime(2, 59, 43, 10, 30, 2007)),
             array('2007-10-30 02:59:43 Z', gmmktime(2, 59, 43, 10, 30, 2007)),
@@ -222,8 +214,8 @@ class InlineTest extends \PHPUnit_Framework_TestCase
             array('{ foo  : bar, bar : foo,  false  :   false,  null  :   null,  integer :  12  }', array('foo' => 'bar', 'bar' => 'foo', 'false' => false, 'null' => null, 'integer' => 12)),
             array('{foo: \'bar\', bar: \'foo: bar\'}', array('foo' => 'bar', 'bar' => 'foo: bar')),
             array('{\'foo\': \'bar\', "bar": \'foo: bar\'}', array('foo' => 'bar', 'bar' => 'foo: bar')),
-            array('{\'foo\'\'\': \'bar\', "bar\"": \'foo: bar\'}', array('foo\'' => 'bar', 'bar"' => 'foo: bar')),
-            array('{\'foo: \': \'bar\', "bar: ": \'foo: bar\'}', array('foo: ' => 'bar', 'bar: ' => 'foo: bar')),
+            array('{\'foo\'\'\': \'bar\', "bar\"": \'foo: bar\'}', array('foo\'' => 'bar', "bar\"" => 'foo: bar')),
+            array('{\'foo: \': \'bar\', "bar: ": \'foo: bar\'}', array('foo: ' => 'bar', "bar: " => 'foo: bar')),
 
             // nested sequences and mappings
             array('[foo, [bar, foo]]', array('foo', array('bar', 'foo'))),
@@ -346,14 +338,6 @@ class InlineTest extends \PHPUnit_Framework_TestCase
 
             array("'-dash'", '-dash'),
             array("'-'", '-'),
-
-            // Pre-YAML-1.2 booleans
-            array("'y'", 'y'),
-            array("'n'", 'n'),
-            array("'yes'", 'yes'),
-            array("'no'", 'no'),
-            array("'on'", 'on'),
-            array("'off'", 'off'),
 
             // sequences
             array('[foo, bar, false, null, 12]', array('foo', 'bar', false, null, 12)),

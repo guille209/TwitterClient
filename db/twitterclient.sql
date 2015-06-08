@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-05-2015 a las 13:15:43
+-- Tiempo de generación: 08-06-2015 a las 13:00:41
 -- Versión del servidor: 5.6.20
 -- Versión de PHP: 5.6.3
 
@@ -43,14 +43,15 @@ CREATE TABLE IF NOT EXISTS `tweet` (
   `user_id` varchar(152) NOT NULL,
   `text` varchar(256) NOT NULL,
   `date` datetime NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
 
 --
 -- Volcado de datos para la tabla `tweet`
 --
 
 INSERT INTO `tweet` (`tweet_id`, `user_id`, `text`, `date`) VALUES
-(15, '4', 'Mi primer tweet programado!', '1992-12-01 16:01:00');
+(15, '4', 'Mi primer tweet programado!', '1992-12-01 16:01:00'),
+(16, '4', 'ya funciona todo!', '2015-06-08 12:55:00');
 
 -- --------------------------------------------------------
 
@@ -62,14 +63,14 @@ CREATE TABLE IF NOT EXISTS `user` (
 `user_id` int(11) NOT NULL,
   `oauth_token` varchar(256) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `oauth_token_secret` varchar(256) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Volcado de datos para la tabla `user`
 --
 
 INSERT INTO `user` (`user_id`, `oauth_token`, `oauth_token_secret`) VALUES
-(4, 'NvgLu76DBG1UgzsNYngCzqqn4UGm2blr', 'XpJ3ZZeBVlvwrAB5MpQ1BNTBFChmxOMz');
+(4, '323982065-69nCKYqMOqZ0LYPjwlkcdtwf6UTBI6C6CpxOM0uu', '16ijGDzOgRfz1Tmzjgb8HXjBnVqv38H2VINrBgGq051PW');
 
 --
 -- Índices para tablas volcadas
@@ -106,12 +107,12 @@ MODIFY `hashtaglist_id` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT de la tabla `tweet`
 --
 ALTER TABLE `tweet`
-MODIFY `tweet_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
+MODIFY `tweet_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT de la tabla `user`
 --
 ALTER TABLE `user`
-MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
