@@ -2,12 +2,11 @@
 
 namespace models\entities;
 
-
 /**
  * User
  */
-class User
-{
+class User {
+
     /**
      * @var string
      */
@@ -23,14 +22,18 @@ class User
      */
     private $oauthTokenSecret;
 
+    public function setUserId($userId) {
+        $this->$userId = $userId;
+
+        return $this;
+    }
 
     /**
      * Get userId
      *
      * @return string 
      */
-    public function getUserId()
-    {
+    public function getUserId() {
         return $this->userId;
     }
 
@@ -40,8 +43,7 @@ class User
      * @param string $oauthToken
      * @return User
      */
-    public function setOauthToken($oauthToken)
-    {
+    public function setOauthToken($oauthToken) {
         $this->oauthToken = $oauthToken;
 
         return $this;
@@ -52,8 +54,7 @@ class User
      *
      * @return string 
      */
-    public function getOauthToken()
-    {
+    public function getOauthToken() {
         return $this->oauthToken;
     }
 
@@ -63,8 +64,7 @@ class User
      * @param string $oauthTokenSecret
      * @return User
      */
-    public function setOauthTokenSecret($oauthTokenSecret)
-    {
+    public function setOauthTokenSecret($oauthTokenSecret) {
         $this->oauthTokenSecret = $oauthTokenSecret;
 
         return $this;
@@ -75,8 +75,8 @@ class User
      *
      * @return string 
      */
-    public function getOauthTokenSecret()
-    {
+    public function getOauthTokenSecret() {
         return $this->oauthTokenSecret;
     }
+
 }
