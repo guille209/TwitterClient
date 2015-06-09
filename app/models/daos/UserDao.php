@@ -32,7 +32,7 @@ class UserDao {
         $sql = "SELECT u FROM models\\entities\\User u WHERE u.oauthToken = '" . $user->getOauthToken() . "'";
         $query = $em->createQuery($sql);
         $user = $query->getResult();
-        return  $user;
+        return $user;
     }
 
 }

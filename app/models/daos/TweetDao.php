@@ -23,7 +23,8 @@ class TweetDao {
 
     function deleteTweet($tweet) {
         $em = GetEntityManager();
-        $em->remove($tweet);
+        $mergedTweet = $em->merge($tweet); 
+        $em->remove($mergedTweet);
         $em->flush();
     }
 

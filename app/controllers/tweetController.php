@@ -26,24 +26,21 @@ class tweetController implements interfaces\iTweetController {
 
     function programTweet($tweet_string, $date) {
         $user = new \models\entities\User();
+        $userDb = new \models\entities\User();
+        $tweet = new \models\entities\Tweet();
         $user->setOauthToken($_SESSION['access_token']['oauth_token']);
         $user->setOauthTokenSecret($_SESSION['access_token']['oauth_token_secret']);
         $userDao = new \models\daos\UserDao();
         $userDb = $userDao->getUser($user);
-
-        if (isset($userDb)) {
-            $user->setUserId(100);
-            var_dump($user);
+        if (isset($userDb[0])) {
+            $tweet->setUserId($userDb[0]->getUserId());
         } else {
             $userDao->saveUser($user);
+            $tweet->setUserId($user->getUserId());
         }
-
-        $tweet = new \models\entities\Tweet();
         $tweet->setText($tweet_string);
         $tweet->setDate(new \DateTime($date));
-        $tweet->setUserId($user->getUserId());
         $tweetDao = new \models\daos\TweetDao();
-
         $tweetDao->saveTweet($tweet);
     }
 
