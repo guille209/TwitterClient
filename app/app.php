@@ -117,7 +117,5 @@ function retweet() {
     $post_array = $app->request()->post();
     $id_tweet = $post_array['id_tweet'];
     //echo $id_tweet;
-    //$response =
      $tweetController->retweet($id_tweet);
-    //echo $response;
 }
