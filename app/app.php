@@ -24,6 +24,8 @@ $app->post('/tweet/search', $authenticate(), 'search');
 $app->post('/tweet/create', $authenticate(), 'createTweet');
 $app->post('/tweet/destroy', $authenticate(), 'destroyTweet');
 $app->post('/tweet/reply', $authenticate(), 'replyTweet');
+$app->post('/tweet/retweet', $authenticate(), 'retweet');
+
 
 //$app->post('/hashtaglist/createHashtagList', $authenticate(), 'createHashtagList');
 /*$app->get('/hashtaglist/showList', $authenticate(), 'showHashtagList');
@@ -107,4 +109,15 @@ function nearbyTweets() {
     $longitud = $post_array['longitud'];
     $response = $searchController->searchNearbyTweets($latitud, $longitud);
     echo $response;
+}
+
+function retweet() {
+    $tweetController = new controllers\tweetController();
+    $app = \Slim\Slim::getInstance();
+    $post_array = $app->request()->post();
+    $id_tweet = $post_array['id_tweet'];
+    //echo $id_tweet;
+    //$response =
+     $tweetController->retweet($id_tweet);
+    //echo $response;
 }

@@ -15,9 +15,6 @@ namespace controllers;
  */
 class tweetController implements interfaces\iTweetController {
 
-    //put your code here
-
-
     function toTweet($tweet_string) {
         $raw_response = $_SESSION["connection"]->post("statuses/update", array("status" => $tweet_string));
         $app = \Slim\Slim::getInstance();
@@ -54,6 +51,14 @@ class tweetController implements interfaces\iTweetController {
         $raw_response = $_SESSION["connection"]->post("statuses/destroy", array("id" => $id_tweet));
         $json_string = json_encode($raw_response, JSON_UNESCAPED_SLASHES);
         return $json_string;
+    }
+
+    function retweet($id_tweet) {
+        $raw_response = $_SESSION["connection"]->post("statuses/retweet/" . $id_tweet);
+        $app = \Slim\Slim::getInstance();
+        $json_string = json_encode($raw_response, JSON_UNESCAPED_SLASHES);
+        //return $json_string;
+        $app->redirect('/home');
     }
 
 }
