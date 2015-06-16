@@ -12,11 +12,29 @@ namespace controllers;
  * @author Propietario
  */
 class hashtagController implements interfaces\iHashtagController{
-   function createHashtagList($hastaglist_name){
-        $hash = $_SESSION["connection"]->post("hashtaglist/createHashtagList", array("hastaglist_name" => $hastaglist_name));
+    
+   function createHashtagList($hashtag){
+        /*$hash = $_SESSION["connection"]->post("hashtaglist/createHashtagList", array("hastaglist_name" => $hastaglist_name));
         $json_string = json_encode($hash, JSON_UNESCAPED_SLASHES);
         return $json_string;
-        //return \helpers\jsonShortener::shortenCreateHashtagList($json_string);
+        //return \helpers\jsonShortener::shortenCreateHashtagList($json_string);*/
+       
+        $user = new \models\entities\User();
+        $userDb = new \models\entities\User();
+        $user->setOauthToken($_SESSION['access_token']['oauth_token']);
+        $user->setOauthTokenSecret($_SESSION['access_token']['oauth_token_secret']);
+        $userDao = new \models\daos\UserDao();
+        $userDb = $userDao->getUser($user);
+        if (isset($userDb[0])) {
+            $tweet->setUserId($userDb[0]->getUserId());
+        } else {
+            $userDao->saveUser($user);
+            $tweet->setUserId($user->getUserId());
+        }
+        $hastaglist = new \models\entities\Hashtaglist();
+        $hastaglist->setHashtag($hashtag);
+        $hastaglistDao = new \models\daos\HashtaglistDao();
+        $hastaglistDao->saveHashtaglist($hastaglist);
     }
     
     /*function showHashtagsList(){
