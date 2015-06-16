@@ -26,7 +26,7 @@ $app->post('/tweet/destroy', $authenticate(), 'destroyTweet');
 $app->post('/tweet/reply', $authenticate(), 'replyTweet');
 $app->post('/tweet/retweet', $authenticate(), 'retweet');
 $app->post('/user/follow', $authenticate(), 'follow');
-//$app->post('/user/unfollow', $authenticate(), 'unfollow');
+$app->post('/user/unfollow', $authenticate(), 'unfollow');
 $app->get('/user/showFriends', $authenticate(), 'showFriends');
 
 //$app->post('/hashtaglist/createHashtagList', $authenticate(), 'createHashtagList');
@@ -131,7 +131,7 @@ function showProfile() {
     echo $response;
 }
 
-/* Seguimienti usuarios */
+/* Seguimiento usuarios */
 
 function follow() {
     $userController = new controllers\userController();
@@ -139,15 +139,15 @@ function follow() {
     $post_array = $app->request()->post();
     $user_id = $post_array['user_id'];
     $response = $userController->follow($user_id);
-    echo $response;
+    //echo $response;
 }
 
 function unfollow() {
     $userController = new controllers\userController();
     $app = \Slim\Slim::getInstance();
     $post_array = $app->request()->post();
-    $user_screen_name = $post_array['user_screen_name'];
-    $response = $userController->unfollow($user_screen_name);
+    $screen_name = $post_array['screen_name'];
+    $response = $userController->unfollow($screen_name);
     echo $response;
 }
 

@@ -26,7 +26,7 @@ class userController implements interfaces\iUserController {
         $raw_response = $_SESSION["connection"]->post("friendships/create/" . $user_id);
         $app = \Slim\Slim::getInstance();
         $json_string = json_encode($raw_response, JSON_UNESCAPED_SLASHES);
-//return $json_string;
+        //return $json_string;
         $app->redirect('/user/showFriends');
     }
 
@@ -38,8 +38,12 @@ class userController implements interfaces\iUserController {
         return $json_string;
     }
 
-    function unfollow($user_id) {
-        
+    function unfollow($screen_name) {
+        $raw_response = $_SESSION["connection"]->post("friendships/destroy", array("screen_name"=>$screen_name));
+        $app = \Slim\Slim::getInstance();
+        $json_string = json_encode($raw_response, JSON_UNESCAPED_SLASHES);
+        return $json_string;
+        //$app->redirect('/user/showFriends');
     }
 
 }

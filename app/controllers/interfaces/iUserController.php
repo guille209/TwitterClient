@@ -17,7 +17,7 @@ interface iUserController {
     
     public function follow($user_id);
     
-    public function unfollow($user_id);
+    public function unfollow($user_screen_name);
     
     public function showFriends();
 }
