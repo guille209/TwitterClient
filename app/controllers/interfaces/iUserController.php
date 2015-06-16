@@ -14,4 +14,10 @@ interface iUserController {
     //put your code here
     
     public function showProfile();
+    
+    public function follow($user_id);
+    
+    public function unfollow($user_id);
+    
+    public function showFriends();
 }

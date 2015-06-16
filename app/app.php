@@ -27,11 +27,12 @@ $app->post('/tweet/reply', $authenticate(), 'replyTweet');
 $app->post('/tweet/retweet', $authenticate(), 'retweet');
 $app->post('/user/follow', $authenticate(), 'follow');
 //$app->post('/user/unfollow', $authenticate(), 'unfollow');
+$app->get('/user/showFriends', $authenticate(), 'showFriends');
 
 //$app->post('/hashtaglist/createHashtagList', $authenticate(), 'createHashtagList');
-/*$app->get('/hashtaglist/showList', $authenticate(), 'showHashtagList');
-$app->get('/hashtaglist/showDetailsList', $authenticate(), 'showDetailsHashtagList');
-$app->post('/hashtaglist/deleteList', $authenticate(), 'deleteHashtagList');*/
+/* $app->get('/hashtaglist/showList', $authenticate(), 'showHashtagList');
+  $app->get('/hashtaglist/showDetailsList', $authenticate(), 'showDetailsHashtagList');
+  $app->post('/hashtaglist/deleteList', $authenticate(), 'deleteHashtagList'); */
 
 
 //$app->get('/hashtaglist/create/:name', 'createHashtagList');
@@ -39,7 +40,7 @@ $app->post('/hashtaglist/deleteList', $authenticate(), 'deleteHashtagList');*/
 //$app->get('/hashtaglist/list', 'listHastagLists');
 //$app->get('/hashtaglist/detail/:id', 'hashtagListDetail');
 
-/*Acciones autenticacion*/
+/* Acciones autenticacion */
 function login() {
     $logInController = new controllers\registerController();
     $response = $logInController->login();
@@ -52,14 +53,16 @@ function logout() {
     echo $response;
 }
 
-/*Pagina principal*/
+/* Pagina principal */
+
 function home() {
     $homeController = new controllers\homeController();
     $response = $homeController->home();
     echo $response;
 }
 
-/*Buscar en toda la aplicacion*/
+/* Buscar en toda la aplicacion */
+
 function search() {
     $searchController = new controllers\searchController();
     $app = \Slim\Slim::getInstance();
@@ -68,7 +71,8 @@ function search() {
     echo $response;
 }
 
-/*Tweets*/
+/* Tweets */
+
 function createTweet() {
     $tweetController = new controllers\tweetController();
     $app = \Slim\Slim::getInstance();
@@ -76,7 +80,7 @@ function createTweet() {
     if (!isset($post_array['schedule'])) {
         $tweetController->toTweet($post_array['tweet']);
     } else {//Tweet programado
-        $tweetController->programTweet($post_array['tweet'],$post_array['time']);
+        $tweetController->programTweet($post_array['tweet'], $post_array['time']);
     }
 }
 
@@ -116,22 +120,40 @@ function retweet() {
     $post_array = $app->request()->post();
     $id_tweet = $post_array['id_tweet'];
     //echo $id_tweet;
-     $tweetController->retweet($id_tweet);
+    $tweetController->retweet($id_tweet);
 }
 
-/*Perfil usuario*/
+/* Perfil usuario */
+
 function showProfile() {
     $userController = new controllers\userController();
     $response = $userController->showProfile();
     echo $response;
 }
 
-/*Seguimienti usuarios*/
+/* Seguimienti usuarios */
+
 function follow() {
     $userController = new controllers\userController();
     $app = \Slim\Slim::getInstance();
     $post_array = $app->request()->post();
     $user_id = $post_array['user_id'];
     $response = $userController->follow($user_id);
+    echo $response;
+}
+
+function unfollow() {
+    $userController = new controllers\userController();
+    $app = \Slim\Slim::getInstance();
+    $post_array = $app->request()->post();
+    $user_screen_name = $post_array['user_screen_name'];
+    $response = $userController->unfollow($user_screen_name);
+    echo $response;
+}
+
+function showFriends() {
+    $userController = new controllers\userController();
+    $app = \Slim\Slim::getInstance();
+    $response = $userController->showFriends();
     echo $response;
 }
