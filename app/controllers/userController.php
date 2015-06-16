@@ -23,11 +23,11 @@ class userController implements interfaces\iUserController {
     }
 
     function follow($user_id) {
-        $raw_response = $_SESSION["connection"]->post("friendships/create/" . $user_id);
+        $raw_response = $_SESSION["connection"]->post("friendships/create", array("user_id"=>$user_id));
         $app = \Slim\Slim::getInstance();
         $json_string = json_encode($raw_response, JSON_UNESCAPED_SLASHES);
-        //return $json_string;
-        $app->redirect('/user/showFriends');
+        return $json_string;
+        //$app->redirect('/user/showFriends');
     }
 
     function showFriends() {

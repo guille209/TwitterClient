@@ -139,7 +139,7 @@ function follow() {
     $post_array = $app->request()->post();
     $user_id = $post_array['user_id'];
     $response = $userController->follow($user_id);
-    //echo $response;
+    echo $response;
 }
 
 function unfollow() {
