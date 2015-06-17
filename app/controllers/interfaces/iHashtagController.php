@@ -11,5 +11,6 @@ namespace controllers\interfaces;
  * @author Propietario
  */
 interface iHashtagController {
-    //put your code here
+
+    public function createHashtagList($hashtag);
 }

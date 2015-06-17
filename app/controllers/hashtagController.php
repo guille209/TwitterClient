@@ -1,5 +1,7 @@
 <?php
+
 namespace controllers;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -11,47 +13,50 @@ namespace controllers;
  *
  * @author Propietario
  */
-class hashtagController implements interfaces\iHashtagController{
-    
-   function createHashtagList($hashtag){
-        /*$hash = $_SESSION["connection"]->post("hashtaglist/createHashtagList", array("hastaglist_name" => $hastaglist_name));
-        $json_string = json_encode($hash, JSON_UNESCAPED_SLASHES);
-        return $json_string;
-        //return \helpers\jsonShortener::shortenCreateHashtagList($json_string);*/
-       
+class hashtagController implements interfaces\iHashtagController {
+
+    function createHashtagList($hashtag) {
+        /* $hash = $_SESSION["connection"]->post("hashtaglist/createHashtagList", array("hastaglist_name" => $hastaglist_name));
+          $json_string = json_encode($hash, JSON_UNESCAPED_SLASHES);
+          return $json_string;
+          //return \helpers\jsonShortener::shortenCreateHashtagList($json_string); */
+
         $user = new \models\entities\User();
-        $userDb = new \models\entities\User();
         $user->setOauthToken($_SESSION['access_token']['oauth_token']);
         $user->setOauthTokenSecret($_SESSION['access_token']['oauth_token_secret']);
         $userDao = new \models\daos\UserDao();
+        $userDb = new \models\entities\User();
+        $hashtaglist = new \models\entities\Hashtaglist();
         $userDb = $userDao->getUser($user);
         if (isset($userDb[0])) {
-            $tweet->setUserId($userDb[0]->getUserId());
+            $hashtaglist->setUserId($userDb[0]->getUserId());
         } else {
             $userDao->saveUser($user);
-            $tweet->setUserId($user->getUserId());
+            $hashtaglist->setUserId($user->getUserId());
         }
-        $hastaglist = new \models\entities\Hashtaglist();
-        $hastaglist->setHashtag($hashtag);
-        $hastaglistDao = new \models\daos\HashtaglistDao();
-        $hastaglistDao->saveHashtaglist($hastaglist);
+
+        $hashtaglist->setHashtag($hashtag);
+        $hashtaglistDao = new \models\daos\HashtaglistDao();
+        $hashtaglistDao->saveHashtaglist($hashtaglist);
+        $hashtaglistDao->hashtaglist_p();
+        
     }
-    
-    /*function showHashtagsList(){
-        $hash = $_SESSION["connection"]->post("hashtags/showList", array("q"=>"%23",  "" => $_SESSION["access_token"][""]));
-        $json_string = json_encode($hash, JSON_UNESCAPED_SLASHES);
-        return \helpers\jsonShortener::shortenSearchTweet($json_string);
-    }
-    
-    function showDetailsHashtagsList(){
-         $hash = $_SESSION["connection"]->post("hashtags/showDetailsList", array("" => $_SESSION["access_token"][""]));
-        $json_string = json_encode($hash, JSON_UNESCAPED_SLASHES);
-        return \helpers\jsonShortener::shortenSearchTweet($json_string);
-    }
-    
-    function deleteHashtagsList(){
-        $hash = $_SESSION["connection"]->post("hashtags/deleteList", array("" => $_SESSION["access_token"][""]));
-        $json_string = json_encode($hash, JSON_UNESCAPED_SLASHES);
-        return ;
-    }*/
+
+    /* function showHashtagsList(){
+      $hash = $_SESSION["connection"]->post("hashtags/showList", array("q"=>"%23",  "" => $_SESSION["access_token"][""]));
+      $json_string = json_encode($hash, JSON_UNESCAPED_SLASHES);
+      return \helpers\jsonShortener::shortenSearchTweet($json_string);
+      }
+
+      function showDetailsHashtagsList(){
+      $hash = $_SESSION["connection"]->post("hashtags/showDetailsList", array("" => $_SESSION["access_token"][""]));
+      $json_string = json_encode($hash, JSON_UNESCAPED_SLASHES);
+      return \helpers\jsonShortener::shortenSearchTweet($json_string);
+      }
+
+      function deleteHashtagsList(){
+      $hash = $_SESSION["connection"]->post("hashtags/deleteList", array("" => $_SESSION["access_token"][""]));
+      $json_string = json_encode($hash, JSON_UNESCAPED_SLASHES);
+      return ;
+      } */
 }
