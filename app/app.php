@@ -29,6 +29,7 @@ $app->post('/user/follow', $authenticate(), 'follow');
 $app->post('/user/unfollow', $authenticate(), 'unfollow');
 $app->get('/user/showFriends', $authenticate(), 'showFriends');
 $app->post('/hashtaglist/createHashtaglist', $authenticate(), 'createHashtaglist');
+$app->get('/hashtaglist/showList', $authenticate(), 'showHashtaglist');
 
 //$app->post('/hashtaglist/createHashtagList', $authenticate(), 'createHashtagList');
 /* $app->get('/hashtaglist/showList', $authenticate(), 'showHashtagList');
@@ -167,4 +168,12 @@ function createHashtagList() {
     $post_array = $app->request()->post();
     $hashtag = $post_array['hashtag'];
     $response = $hashtagController->createHashtagList($hashtag);
+    echo $response;
+}
+
+function showHashtaglist() {
+    $hashtagController = new controllers\hashtagController();
+    $app = \Slim\Slim::getInstance();
+    $response = $hashtagController->showHashtaglist();
+    echo $response;
 }

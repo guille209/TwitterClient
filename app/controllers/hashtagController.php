@@ -35,11 +35,27 @@ class hashtagController implements interfaces\iHashtagController {
           $hashtaglist->setUserId($user->getUserId());
           } */
 
+        $user = new \models\entities\User();
+        $user->setOauthToken($_SESSION['access_token']['oauth_token']);
+        $user->setOauthTokenSecret($_SESSION['access_token']['oauth_token_secret']);
+        $userDao = new \models\daos\UserDao();
+        $userDb = new \models\entities\User();
         $hashtaglist = new \models\entities\Hashtaglist();
-        $hashtaglist->setHashtag($hashtag);
-        $hashtaglistDao = new \models\daos\HashtaglistDao();
+        $userDb = $userDao->getUser($user);
+        if (isset($userDb[0])) {
+            $hashtaglist->setUserId($userDb[0]->getUserId());
+        } else {
+            $userDao->saveUser($user);
+            $hashtaglist->setUserId($user->getUserId());
+        }
+        echo "El user->" . $user;
+        //$hashtaglist = new \models\entities\Hashtaglist();
+        //$hashtaglist->setHashtag($hashtag);
+        echo "El hashtag->" . $hashtag;
+       /* $hashtaglistDao = new \models\daos\HashtaglistDao();
+        echo "HashtagDao found?" . $hashtaglistDao;
         $hashtaglistDao->hashtaglist_create($hashtag);
-        $hashtaglistDao->saveHashtaglist($hashtaglist);
+        $hashtaglistDao->saveHashtaglist($hashtaglist);*/
     }
 
     /* function showHashtagsList(){
