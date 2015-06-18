@@ -168,8 +168,8 @@ function createHashtaglist() {
     $hashtagController = new controllers\hashtagController();
     $app = \Slim\Slim::getInstance();
     $post_array = $app->request()->post();
-    $hashtag = $post_array['hashtag'];
-    $response = $hashtagController->createHashtaglist($hashtag);
+    $h = new models\entities\Hashtaglist();
+    $response = $hashtagController->createHashtaglist('hashtag');
     echo $response;
 }
 

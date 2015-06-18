@@ -22,16 +22,19 @@ class hashtagController implements interfaces\iHashtagController {
           //return \helpers\jsonShortener::shortenCreateHashtagList($json_string); */
 
         $hashtaglist = new \models\entities\Hashtaglist();
-        $user = new \models\entities\User();
+        /*$user = new \models\entities\User();
         $userDb = new \models\entities\User();
         $user->setOauthToken($_SESSION['access_token']['oauth_token']);
         $user->setOauthTokenSecret($_SESSION['access_token']['oauth_token_secret']);
         $userDao = new \models\daos\UserDao();
         $userDb = $userDao->getUser($user);
-        $hashtaglist->setUserId($user->getUserId());
-        $hashtaglist->setHashtag($hashtag);
-        $hashtaglistDao = new \models\daos\HashtaglistDao();
-        $hashtaglistDao->saveHashtaglist($hashtaglist);
+        echo "El user->" . $userDb;*/
+        $hashtaglist->setUserId(10);
+        $hashtaglist->setHashtag($hashtag); 
+        echo "El hashtag->" . $hashtag;
+        
+       // $hashtaglistDao = new \models\daos\HashtaglistDao();
+       // $hashtaglistDao->saveHashtaglist($hashtaglist);
 
 
         /*
