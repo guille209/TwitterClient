@@ -21,25 +21,25 @@ class hashtagController implements interfaces\iHashtagController {
           return $json_string;
           //return \helpers\jsonShortener::shortenCreateHashtagList($json_string); */
 
-        $user = new \models\entities\User();
-        $user->setOauthToken($_SESSION['access_token']['oauth_token']);
-        $user->setOauthTokenSecret($_SESSION['access_token']['oauth_token_secret']);
-        $userDao = new \models\daos\UserDao();
-        $userDb = new \models\entities\User();
-        $hashtaglist = new \models\entities\Hashtaglist();
-        $userDb = $userDao->getUser($user);
-        if (isset($userDb[0])) {
-            $hashtaglist->setUserId($userDb[0]->getUserId());
-        } else {
-            $userDao->saveUser($user);
-            $hashtaglist->setUserId($user->getUserId());
-        }
+        /* $user = new \models\entities\User();
+          $user->setOauthToken($_SESSION['access_token']['oauth_token']);
+          $user->setOauthTokenSecret($_SESSION['access_token']['oauth_token_secret']);
+          $userDao = new \models\daos\UserDao();
+          $userDb = new \models\entities\User();
+          $hashtaglist = new \models\entities\Hashtaglist();
+          $userDb = $userDao->getUser($user);
+          if (isset($userDb[0])) {
+          $hashtaglist->setUserId($userDb[0]->getUserId());
+          } else {
+          $userDao->saveUser($user);
+          $hashtaglist->setUserId($user->getUserId());
+          } */
 
+        $hashtaglist = new \models\entities\Hashtaglist();
         $hashtaglist->setHashtag($hashtag);
         $hashtaglistDao = new \models\daos\HashtaglistDao();
+        $hashtaglistDao->hashtaglist_create($hashtag);
         $hashtaglistDao->saveHashtaglist($hashtaglist);
-        $hashtaglistDao->hashtaglist_p();
-        
     }
 
     /* function showHashtagsList(){
