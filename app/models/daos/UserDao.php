@@ -35,9 +35,9 @@ class UserDao {
         return $user;
     }
     
-    function getUserByHashId($hashtag) {
+    function getUserByHashId($hashtaglist) {
         $em = GetEntityManager();
-        $user = $em->find('models\\entities\\User', $hashtag->getUserId());
+        $user = $em->find('models\\entities\\User', $hashtaglist->getUserId());
         return $user;
     }
     
