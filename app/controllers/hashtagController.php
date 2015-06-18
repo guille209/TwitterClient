@@ -35,7 +35,26 @@ class hashtagController implements interfaces\iHashtagController {
 
         $hashtaglistDao = new \models\daos\HashtaglistDao();
         $hashtaglistDao->saveHashtaglist($hashtaglist);
+    }
 
+    function deleteHashtaglist($hashtag_id) {
+        /*$user = new \models\entities\User();
+        $user->setOauthToken($_SESSION['access_token']['oauth_token']);
+        $user->setOauthTokenSecret($_SESSION['access_token']['oauth_token_secret']);
+        $userDao = new \models\daos\UserDao();
+        $userDao->getUser($user);
+        $userDao->saveUser($user);*/
+        
+          $user = new \models\entities\User();
+          $userDao = new \models\daos\UserDao();
+          $user = $userDao->getUserByHashId($hashtag_id);
+          $connection = new \Abraham\TwitterOAuth\TwitterOAuth(CONSUMER_KEY, CONSUMER_SECRET, $user->getOauthToken(), $user->getOauthTokenSecret());
+          $user = $connection->get("account/verify_credentials");
+          $_SESSION['userLogged'] = true;
+                 
+        //getUserByHashId
+        $hashtaglistDao = new \models\daos\HashtaglistDao();
+        $hashtaglistDao->deleteHashtaglist($hashtag_id);
     }
 
     function createSavedQuery($hashtag) {

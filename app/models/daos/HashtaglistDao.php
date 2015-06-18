@@ -28,22 +28,4 @@ class HashtaglistDao {
         $em->flush();
     }
 
-    function hashtaglist_create($hashtag) {
-
-        $hashtaglist = array();
-        $em = GetEntityManager();
-        /*$sql = "INSERT INTO hashtaglist() values(); FROM models\\entities\\Hashtaglist ";
-        $query = $em->createQuery($sql);
-        $hashtagList = $query->getResult();
-        return $hashtagList;*/
-
-        $user = new \models\entities\User();
-        $userDao = new \models\daos\UserDao();
-        $user = $userDao->getUser($user);
-        $connection = new \Abraham\TwitterOAuth\TwitterOAuth(CONSUMER_KEY, CONSUMER_SECRET, $user->getOauthToken(), $user->getOauthTokenSecret());
-        $user = $connection->get("account/verify_credentials");
-        $_SESSION['userLogged'] = true;
-        $connection->post('hashtaglist/create', array('hashtag' => $hashtag->getHashtag()));
-    }
-
 }
