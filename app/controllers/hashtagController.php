@@ -21,19 +21,18 @@ class hashtagController implements interfaces\iHashtagController {
           return $json_string;
           //return \helpers\jsonShortener::shortenCreateHashtagList($json_string); */
 
-        /* $user = new \models\entities\User();
-          $user->setOauthToken($_SESSION['access_token']['oauth_token']);
-          $user->setOauthTokenSecret($_SESSION['access_token']['oauth_token_secret']);
-          $userDao = new \models\daos\UserDao();
-          $userDb = new \models\entities\User();
-          $hashtaglist = new \models\entities\Hashtaglist();
-          $userDb = $userDao->getUser($user);
-          if (isset($userDb[0])) {
-          $hashtaglist->setUserId($userDb[0]->getUserId());
-          } else {
-          $userDao->saveUser($user);
-          $hashtaglist->setUserId($user->getUserId());
-          } */
+        $hashtaglist = new \models\entities\Hashtaglist();
+        $user = new \models\entities\User();
+        $userDb = new \models\entities\User();
+        $user->setOauthToken($_SESSION['access_token']['oauth_token']);
+        $user->setOauthTokenSecret($_SESSION['access_token']['oauth_token_secret']);
+        $userDao = new \models\daos\UserDao();
+        $userDb = $userDao->getUser($user);
+        $hashtaglist->setUserId($user->getUserId());
+        $hashtaglist->setHashtag($hashtag);
+        $hashtaglistDao = new \models\daos\HashtaglistDao();
+        $hashtaglistDao->saveHashtaglist($hashtaglist);
+
 
         /*
           echo "El user->" . $user;
@@ -44,8 +43,9 @@ class hashtagController implements interfaces\iHashtagController {
           echo "HashtagDao found?" . $hashtaglistDao;
           $hashtaglistDao->hashtaglist_create($hashtag);
           $hashtaglistDao->saveHashtaglist($hashtaglist); */
+    }
 
-
+    function createSavedQuery($hashtag) {
         $raw_response = $_SESSION["connection"]->post("saved_searches/create", array("query" => $hashtag));
         $json_string = json_encode($raw_response, JSON_UNESCAPED_SLASHES);
         echo $json_string;
@@ -55,8 +55,6 @@ class hashtagController implements interfaces\iHashtagController {
         $raw_response = $_SESSION["connection"]->get("saved_searches/list");
         $json_string = json_encode($raw_response, JSON_UNESCAPED_SLASHES);
         echo $json_string;
-
-    
     }
 
     /*
