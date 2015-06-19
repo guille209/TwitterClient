@@ -26,6 +26,7 @@ class HashtaglistDao {
         $mergedHashtaglist = $em->merge($hashtaglist);
         $em->remove($mergedHashtaglist);
         $em->flush();
+        $em->close();
     }
 
     function get_hashtaglist($hashtagId) {

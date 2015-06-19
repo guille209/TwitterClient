@@ -174,23 +174,20 @@ function createHashtaglist() {
     //$h = new models\entities\Hashtaglist();
     //$h->hashtag;
     $response = $hashtagController->createHashtaglist($h);
-    echo $response;
-    //$app = \Slim\Slim::getInstance();
-    //$app->redirect('/home');
+    //echo $response;
+    $app = \Slim\Slim::getInstance();
+    //$app->redirect('/hashtaglist/showHashtaglist');
 }
 
 function deleteHashtaglist() {
     $hashtagController = new controllers\hashtagController();
     $app = \Slim\Slim::getInstance();
     $post_array = $app->request()->post();
-   /* $h = $post_array['hashtaglistId'];
-    $h = $post_array['hashtaglistId'];
-    $h = $post_array['hashtaglistId'];*/
-    //$hashtaglist = new \models\entities\Hashtaglist();
     $hashtagId = $post_array['hashtagId'];
     //$h->hashtag
-    $response = $hashtagController->deleteHashtaglist($hashtagId);
-    echo $response;
+    $hashtagController->deleteHashtaglist($hashtagId);
+    //echo $response;
+    $app->redirect('/home');
 }
 
 /*function showHashtaglist(){
