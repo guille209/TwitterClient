@@ -61,16 +61,14 @@ class hashtagController implements interfaces\iHashtagController {
         }
     }
 
-    function showHashtaglist() {
+    function showHashtaglistDetails() {
         $hashtaglist = new \models\entities\Hashtaglist();
         $hashtaglistDao = new \models\daos\HashtaglistDao();
 
-        while (true) {
-            sleep(1);
             $hashtaglists = $hashtaglistDao->getLists();
             $count = count($hashtaglists);
             for($i=0;$i<$count;$i++){
-                echo "count->".count($hashtaglists); 
+                //echo "count->".count($hashtaglists); 
                 echo "Hashtaglist id: ";
                 echo $hashtaglists[$i]->getHashtaglistId();
                 echo " ";
@@ -80,7 +78,6 @@ class hashtagController implements interfaces\iHashtagController {
                 echo "Hashtag name ";
                 echo $hashtaglists[$i]->getHashtag();
                 echo "\n";
-           }
         }
     }
 
