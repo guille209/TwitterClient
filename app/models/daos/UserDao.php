@@ -11,7 +11,7 @@ namespace models\daos;
 /**
  * Description of TweetDao
  *
- * @author bl0810
+ * @author Propietario
  */
 class UserDao {
 
@@ -35,7 +35,7 @@ class UserDao {
         return $user;
     }
     
-    function getUserByHashId($hashtaglist) {
+    function getUserByHash($hashtaglist) {
         $em = GetEntityManager();
         $user = $em->find('models\\entities\\User', $hashtaglist->getUserId());
         return $user;

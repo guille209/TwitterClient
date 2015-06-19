@@ -169,26 +169,27 @@ function createHashtaglist() {
     $hashtagController = new controllers\hashtagController();
     $app = \Slim\Slim::getInstance();
     $post_array = $app->request()->post();
-    $h= $post_array['hashtag'];
+    $h = $post_array['hashtag'];
     //$h = new models\entities\Hashtaglist();
-    //$h->hashtag
+    //$h->hashtag;
     $response = $hashtagController->createHashtaglist($h);
     echo $response;
+    //$app = \Slim\Slim::getInstance();
+    //$app->redirect('/home');
 }
 
-function deleteHashtaglist(){
+function deleteHashtaglist() {
     $hashtagController = new controllers\hashtagController();
     $app = \Slim\Slim::getInstance();
     $post_array = $app->request()->post();
-    $h= $post_array['hashtag_id'];
+    $h = $post_array['hashtaglist'];
     //$h = new models\entities\Hashtaglist();
     //$h->hashtag
     $response = $hashtagController->deleteHashtaglist($h);
     echo $response;
 }
 
-
-/*Pruebas*/
+/* Pruebas */
 
 function createSavedQuery() {
     $hashtagController = new controllers\hashtagController();
@@ -199,11 +200,9 @@ function createSavedQuery() {
     echo $response;
 }
 
-
-function get_saved(){
+function get_saved() {
     $hashtagController = new controllers\hashtagController();
     $app = \Slim\Slim::getInstance();
     $response = $hashtagController->get_saved();
     echo $response;
 }
-

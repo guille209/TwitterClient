@@ -37,19 +37,38 @@ class hashtagController implements interfaces\iHashtagController {
         $hashtaglistDao->saveHashtaglist($hashtaglist);
     }
 
-    function deleteHashtaglist($hashtag_id) {
-
+    function deleteHashtaglist($hashtaglist) {
+/*
         $hashtaglist = new \models\entities\Hashtaglist();
-       /* $hashtaglists = $hashtaglistDao->get_hashtaglist($hashtag_id);
+        $hashtaglistDao = new \models\daos\HashtaglistDao();
         $user = new \models\entities\User();
         $userDao = new \models\daos\UserDao();
-        $user = $userDao->getUserByHashId($hashtaglist);
-        /*$connection = new \Abraham\TwitterOAuth\TwitterOAuth(CONSUMER_KEY, CONSUMER_SECRET, $user->getOauthToken(), $user->getOauthTokenSecret());
+        $userDb = new \models\entities\User();
+
+        $connection = new \Abraham\TwitterOAuth\TwitterOAuth(CONSUMER_KEY, CONSUMER_SECRET, $user->getOauthToken(), $user->getOauthTokenSecret());
         $user = $connection->get("account/verify_credentials");
-        $_SESSION['userLogged'] = true;*/
-        //$connection->post('statuses/update', array('status' => $hashtaglist->getText()));
-         echo "El hashtag_id->" . $hashtag_id;
+        $_SESSION['userLogged'] = true;
+        $userDb = $userDao->getUser($user);
+        $hashtaglist->setUserId($userDb[0]->getUserId());
+        //$user = $userDao->getUserByHash($hashtaglist);
+        //$hashtaglist->setUserId($user->getUserId());
+        echo "El hashtag_id->" . $hashtaglist;
+*/
+        $hashtaglist = new \models\entities\Hashtaglist();
+        $user = new \models\entities\User();
+        $user->setOauthToken($_SESSION['access_token']['oauth_token']);
+        $user->setOauthTokenSecret($_SESSION['access_token']['oauth_token_secret']);
+        $userDao = new \models\daos\UserDao();
+        $userDao->getUser($user);
+        $userDao->saveUser($user);
+       // $hashtaglist->setUserId($user->getUserId());
+       // $hashtaglist->setHashtag($hashtag);
+       // echo "El hashtaglist->" . $hashtaglist;
+
         $hashtaglistDao = new \models\daos\HashtaglistDao();
+        $hashtaglistDao->deleteHashtaglist($hashtaglist);
+        
+        
         $hashtaglistDao->deleteHashtaglist($hashtaglist);
     }
 
