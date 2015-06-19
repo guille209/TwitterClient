@@ -41,11 +41,11 @@ class hashtagController implements interfaces\iHashtagController {
     function deleteHashtaglist($hashtagId) {
         $hashtaglist = new \models\entities\Hashtaglist();
         $hashtaglistDao = new \models\daos\HashtaglistDao();
-        
+
         while (true) {
             sleep(1);
             $hashtaglists = $hashtaglistDao->get_hashtaglist($hashtagId);
-            
+
             foreach ($hashtaglists as $hashtaglist) {
                 $user = new \models\entities\User();
                 $userDao = new \models\daos\UserDao();
@@ -57,34 +57,50 @@ class hashtagController implements interfaces\iHashtagController {
                 $hashtaglistDao->deleteHashtaglist($hashtaglist);
                 sleep(1);
             }
-           // $hashtaglistDao->deleteHashtaglist($hashtaglist);
+            // $hashtaglistDao->deleteHashtaglist($hashtaglist);
         }
     }
 
+    function showHashtaglist() {
+        $hashtaglist = new \models\entities\Hashtaglist();
+        $hashtaglistDao = new \models\daos\HashtaglistDao();
 
-        /* function showHashtaglist($hashtag) {
-
-          }
-         */
-
-        function createSavedQuery($hashtag) {
-            $raw_response = $_SESSION["connection"]->post("saved_searches/create", array("query" => $hashtag));
-            $json_string = json_encode($raw_response, JSON_UNESCAPED_SLASHES);
-            echo $json_string;
+        while (true) {
+            sleep(1);
+            $hashtaglists = $hashtaglistDao->getLists();
+            $count = count($hashtaglists);
+            for($i=0;$i<$count;$i++){
+                echo "count->".count($hashtaglists); 
+                echo "Hashtaglist id: ";
+                echo $hashtaglists[$i]->getHashtaglistId();
+                echo " ";
+                echo "User id ";
+                echo $hashtaglists[$i]->getUserId();
+                echo " ";
+                echo "Hashtag name ";
+                echo $hashtaglists[$i]->getHashtag();
+                echo "\n";
+           }
         }
-
-        function get_saved() {
-            $raw_response = $_SESSION["connection"]->get("saved_searches/list");
-            $json_string = json_encode($raw_response, JSON_UNESCAPED_SLASHES);
-            echo $json_string;
-        }
-
-        /*
-          function showDetailsHashtagsList(){
-          $hash = $_SESSION["connection"]->post("hashtags/showDetailsList", array("" => $_SESSION["access_token"][""]));
-          $json_string = json_encode($hash, JSON_UNESCAPED_SLASHES);
-          return \helpers\jsonShortener::shortenSearchTweet($json_string);
-          }
-         */
     }
-    
+
+    function createSavedQuery($hashtag) {
+        $raw_response = $_SESSION["connection"]->post("saved_searches/create", array("query" => $hashtag));
+        $json_string = json_encode($raw_response, JSON_UNESCAPED_SLASHES);
+        echo $json_string;
+    }
+
+    function get_saved() {
+        $raw_response = $_SESSION["connection"]->get("saved_searches/list");
+        $json_string = json_encode($raw_response, JSON_UNESCAPED_SLASHES);
+        echo $json_string;
+    }
+
+    /*
+      function showDetailsHashtagsList(){
+      $hash = $_SESSION["connection"]->post("hashtags/showDetailsList", array("" => $_SESSION["access_token"][""]));
+      $json_string = json_encode($hash, JSON_UNESCAPED_SLASHES);
+      return \helpers\jsonShortener::shortenSearchTweet($json_string);
+      }
+     */
+}

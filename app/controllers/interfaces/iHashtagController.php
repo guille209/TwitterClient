@@ -13,4 +13,6 @@ namespace controllers\interfaces;
 interface iHashtagController {
 
     public function createHashtagList($hashtag);
+    
+    public function deleteHashtagList($hashtagId);
 }

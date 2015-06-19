@@ -38,4 +38,13 @@ class HashtaglistDao {
         return $hashtaglist;
     }
 
+    function getLists() {
+        $em = GetEntityManager();
+        $hashtaglists = array();
+        $sql = "SELECT h FROM models\\entities\\Hashtaglist h";
+        $query = $em->createQuery($sql);
+        $hashtaglists = $query->getResult();
+        return $hashtaglists;
+    }
+
 }
