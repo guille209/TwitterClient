@@ -27,15 +27,14 @@ class HashtaglistDao {
         $em->remove($mergedHashtaglist);
         $em->flush();
     }
-     function get_hashtaglist() {
-       // $hashtaglists = array();
+
+    function get_hashtaglist($hashtagId) {
         $em = GetEntityManager();
         $hashtaglist = new \models\entities\Hashtaglist();
-        $sql = "SELECT h FROM models\\entities\\Hashtaglist h ";
+        $sql = "SELECT h FROM models\\entities\\Hashtaglist h WHERE h.hashtaglistId = '" . $hashtagId . "'";
         $query = $em->createQuery($sql);
-        $hashtaglists = $query->getResult();
-        return $hashtaglists;
+        $hashtaglist = $query->getResult();
+        return $hashtaglist;
     }
-    
 
 }

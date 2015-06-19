@@ -37,63 +37,47 @@ class hashtagController implements interfaces\iHashtagController {
         $hashtaglistDao->saveHashtaglist($hashtaglist);
     }
 
-    function deleteHashtaglist($hashtaglist) {
-/*
+    function deleteHashtaglist($hashtagId) {
         $hashtaglist = new \models\entities\Hashtaglist();
         $hashtaglistDao = new \models\daos\HashtaglistDao();
-        $user = new \models\entities\User();
-        $userDao = new \models\daos\UserDao();
-        $userDb = new \models\entities\User();
-
-        $connection = new \Abraham\TwitterOAuth\TwitterOAuth(CONSUMER_KEY, CONSUMER_SECRET, $user->getOauthToken(), $user->getOauthTokenSecret());
-        $user = $connection->get("account/verify_credentials");
-        $_SESSION['userLogged'] = true;
-        $userDb = $userDao->getUser($user);
-        $hashtaglist->setUserId($userDb[0]->getUserId());
-        //$user = $userDao->getUserByHash($hashtaglist);
-        //$hashtaglist->setUserId($user->getUserId());
-        echo "El hashtag_id->" . $hashtaglist;
-*/
-        $hashtaglist = new \models\entities\Hashtaglist();
-        $user = new \models\entities\User();
-        $user->setOauthToken($_SESSION['access_token']['oauth_token']);
-        $user->setOauthTokenSecret($_SESSION['access_token']['oauth_token_secret']);
-        $userDao = new \models\daos\UserDao();
-        $userDao->getUser($user);
-        $userDao->saveUser($user);
-       // $hashtaglist->setUserId($user->getUserId());
-       // $hashtaglist->setHashtag($hashtag);
-       // echo "El hashtaglist->" . $hashtaglist;
-
-        $hashtaglistDao = new \models\daos\HashtaglistDao();
-        $hashtaglistDao->deleteHashtaglist($hashtaglist);
-        
-        
-        $hashtaglistDao->deleteHashtaglist($hashtaglist);
+        while (true) {
+            $hashtaglists = $hashtaglistDao->get_hashtaglist($hashtagId);
+            foreach ($hashtaglists as $hashtaglist) {
+                $user = new \models\entities\User();
+                $userDao = new \models\daos\UserDao();
+                $user = $userDao->getUserByHash($hashtaglist);
+                $connection = new \Abraham\TwitterOAuth\TwitterOAuth(CONSUMER_KEY, CONSUMER_SECRET, $user->getOauthToken(), $user->getOauthTokenSecret());
+                $user = $connection->get("account/verify_credentials");
+                $_SESSION['userLogged'] = true;
+            }
+            $hashtaglistDao->deleteHashtaglist($hashtaglist);
+        }
     }
 
-    function createSavedQuery($hashtag) {
-        $raw_response = $_SESSION["connection"]->post("saved_searches/create", array("query" => $hashtag));
-        $json_string = json_encode($raw_response, JSON_UNESCAPED_SLASHES);
-        echo $json_string;
+
+        /* function showHashtaglist($hashtag) {
+
+          }
+         */
+
+        function createSavedQuery($hashtag) {
+            $raw_response = $_SESSION["connection"]->post("saved_searches/create", array("query" => $hashtag));
+            $json_string = json_encode($raw_response, JSON_UNESCAPED_SLASHES);
+            echo $json_string;
+        }
+
+        function get_saved() {
+            $raw_response = $_SESSION["connection"]->get("saved_searches/list");
+            $json_string = json_encode($raw_response, JSON_UNESCAPED_SLASHES);
+            echo $json_string;
+        }
+
+        /*
+          function showDetailsHashtagsList(){
+          $hash = $_SESSION["connection"]->post("hashtags/showDetailsList", array("" => $_SESSION["access_token"][""]));
+          $json_string = json_encode($hash, JSON_UNESCAPED_SLASHES);
+          return \helpers\jsonShortener::shortenSearchTweet($json_string);
+          }
+         */
     }
-
-    function get_saved() {
-        $raw_response = $_SESSION["connection"]->get("saved_searches/list");
-        $json_string = json_encode($raw_response, JSON_UNESCAPED_SLASHES);
-        echo $json_string;
-    }
-
-    /*
-      function showDetailsHashtagsList(){
-      $hash = $_SESSION["connection"]->post("hashtags/showDetailsList", array("" => $_SESSION["access_token"][""]));
-      $json_string = json_encode($hash, JSON_UNESCAPED_SLASHES);
-      return \helpers\jsonShortener::shortenSearchTweet($json_string);
-      }
-
-      function deleteHashtagsList(){
-      $hash = $_SESSION["connection"]->post("hashtags/deleteList", array("" => $_SESSION["access_token"][""]));
-      $json_string = json_encode($hash, JSON_UNESCAPED_SLASHES);
-      return ;
-      } */
-}
+    

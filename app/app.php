@@ -30,6 +30,7 @@ $app->post('/user/unfollow', $authenticate(), 'unfollow');
 $app->get('/user/showFriends', $authenticate(), 'showFriends');
 $app->post('/hashtaglist/createHashtaglist', $authenticate(), 'createHashtaglist');
 $app->post('/hashtaglist/deleteHashtaglist', $authenticate(), 'deleteHashtaglist');
+//$app->get('/hashtaglist/showHashtaglist', $authenticate(), 'showHashtaglist');
 
 $app->post('/hashtaglist/createSavedQuery', $authenticate(), 'createSavedQuery');
 $app->get('/hashtaglist/get_saved', $authenticate(), 'get_saved');
@@ -182,12 +183,19 @@ function deleteHashtaglist() {
     $hashtagController = new controllers\hashtagController();
     $app = \Slim\Slim::getInstance();
     $post_array = $app->request()->post();
-    $h = $post_array['hashtaglist'];
-    //$h = new models\entities\Hashtaglist();
+   /* $h = $post_array['hashtaglistId'];
+    $h = $post_array['hashtaglistId'];
+    $h = $post_array['hashtaglistId'];*/
+    //$hashtaglist = new \models\entities\Hashtaglist();
+    $hashtagId = $post_array['hashtagId'];
     //$h->hashtag
-    $response = $hashtagController->deleteHashtaglist($h);
+    $response = $hashtagController->deleteHashtaglist($hashtagId);
     echo $response;
 }
+
+/*function showHashtaglist(){
+    
+}*/
 
 /* Pruebas */
 
