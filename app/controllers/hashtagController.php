@@ -88,10 +88,9 @@ class hashtagController implements interfaces\iHashtagController {
             $hashtaglists = $hashtaglistDao->getLists();
             $count = count($hashtaglists);
             for($i=0;$i<$count;$i++){
-                //echo "Hashtag name: ";
-                //echo $hashtaglists[$i]->getHashtag();
-                return $hashtaglists[$i]->getHashtag();
-                //echo "\n";
+                echo "Hashtag name: ";
+                echo $hashtaglists[$i]->getHashtag();
+                echo "\n";
         }
     }
     

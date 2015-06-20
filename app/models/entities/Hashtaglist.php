@@ -64,7 +64,7 @@ class Hashtaglist
      */
     public function setHashtag($hashtag)
     {
-        $this->hashtag = $hashtag;
+        $this->hashtag = "#".$hashtag;
 
         return $this;
     }
