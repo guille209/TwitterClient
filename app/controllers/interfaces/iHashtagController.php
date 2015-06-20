@@ -15,4 +15,10 @@ interface iHashtagController {
     public function createHashtagList($hashtag);
     
     public function deleteHashtagList($hashtagId);
+    
+    public function showHashtaglistDetails();
+    
+    public function showHashtaglists();
+    
+    
 }

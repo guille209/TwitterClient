@@ -23,23 +23,38 @@ class userController implements interfaces\iUserController {
     }
 
     function follow($user_id) {
-        $raw_response = $_SESSION["connection"]->post("friendships/create", array("user_id"=>$user_id));
+        $raw_response = $_SESSION["connection"]->post("friendships/create", array("user_id" => $user_id));
         $app = \Slim\Slim::getInstance();
         $json_string = json_encode($raw_response, JSON_UNESCAPED_SLASHES);
-        return $json_string;
-        //$app->redirect('/user/showFriends');
+        //return $json_string;
+        $app->redirect('/user/showFriends');
     }
 
     function showFriends() {
+        
         //$screen_name = $_SESSION["access_token"]["screen_name"];
+        
         $raw_response = $_SESSION["connection"]->get("friends/list", array($_SESSION["access_token"]["screen_name"]));
         $app = \Slim\Slim::getInstance();
         $json_string = json_encode($raw_response, JSON_UNESCAPED_SLASHES);
         return $json_string;
+
+       /* $cursor = -1;
+        //https://api.twitter.com/1.1/friends/list.json?"
+        $api_path = "http://api.twitter.com/1.1/friends/list.json?";
+        //$api_path = $_SESSION["connection"]->get("friends/list", array($_SESSION["access_token"]["screen_name"]));
+        $app = \Slim\Slim::getInstance();
+
+        do {
+            $url_with_cursor = $api_path."&cursor=".$cursor;
+            $response_dictionary = perform_http_get_request_for_url($url_with_cursor);
+            $cursor = $response_dictionary['next_cursor'];
+            $json_string = json_encode($api_path, JSON_UNESCAPED_SLASHES);
+        } while ($cursor != 0);*/
     }
 
     function unfollow($screen_name) {
-        $raw_response = $_SESSION["connection"]->post("friendships/destroy", array("screen_name"=>$screen_name));
+        $raw_response = $_SESSION["connection"]->post("friendships/destroy", array("screen_name" => $screen_name));
         $app = \Slim\Slim::getInstance();
         $json_string = json_encode($raw_response, JSON_UNESCAPED_SLASHES);
         return $json_string;
