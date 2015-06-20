@@ -31,14 +31,10 @@ $app->get('/user/showFriends', $authenticate(), 'showFriends');
 $app->post('/hashtaglist/createHashtaglist', $authenticate(), 'createHashtaglist');
 $app->post('/hashtaglist/deleteHashtaglist', $authenticate(), 'deleteHashtaglist');
 $app->get('/hashtaglist/showHashtaglistDetails', $authenticate(), 'showHashtaglistDetails');
+$app->get('/hashtaglist/showHashtaglists', $authenticate(), 'showHashtaglists');
 
 $app->post('/hashtaglist/createSavedQuery', $authenticate(), 'createSavedQuery');
 $app->get('/hashtaglist/get_saved', $authenticate(), 'get_saved');
-
-//$app->post('/hashtaglist/createHashtagList', $authenticate(), 'createHashtagList');
-/* $app->get('/hashtaglist/showList', $authenticate(), 'showHashtagList');
-  $app->get('/hashtaglist/showDetailsList', $authenticate(), 'showDetailsHashtagList');
-  $app->post('/hashtaglist/deleteList', $authenticate(), 'deleteHashtagList'); */
 
 
 //$app->get('/hashtaglist/create/:name', 'createHashtagList');
@@ -176,7 +172,7 @@ function createHashtaglist() {
     $response = $hashtagController->createHashtaglist($h);
     //echo $response;
     $app = \Slim\Slim::getInstance();
-    //$app->redirect('/hashtaglist/showHashtaglist');
+    $app->redirect('/hashtaglist/showHashtaglistDetails');
 }
 
 function deleteHashtaglist() {
@@ -190,10 +186,17 @@ function deleteHashtaglist() {
     $app->redirect('/home');
 }
 
-function showHashtaglistDetails(){
+function showHashtaglistDetails() {
     $hashtagController = new controllers\hashtagController();
     $app = \Slim\Slim::getInstance();
     $response = $hashtagController->showHashtaglistDetails();
+    echo $response;
+}
+
+function showHashtaglists() {
+    $hashtagController = new controllers\hashtagController();
+    $app = \Slim\Slim::getInstance();
+    $response = $hashtagController->showHashtaglists();
     echo $response;
 }
 

@@ -47,4 +47,12 @@ class HashtaglistDao {
         return $hashtaglists;
     }
 
+    function getHashtags() {
+        $em = GetEntityManager();
+        $hashtaglists = array();
+        $sql = "SELECT h.hashtag FROM models\\entities\\Hashtaglist h";
+        $query = $em->createQuery($sql);
+        $hashtaglists = $query->getResult();
+        return $hashtaglists;
+    }
 }

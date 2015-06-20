@@ -81,6 +81,21 @@ class hashtagController implements interfaces\iHashtagController {
         }
     }
 
+    function showHashtaglists() {
+        $hashtaglist = new \models\entities\Hashtaglist();
+        $hashtaglistDao = new \models\daos\HashtaglistDao();
+
+            $hashtaglists = $hashtaglistDao->getLists();
+            $count = count($hashtaglists);
+            for($i=0;$i<$count;$i++){
+                //echo "Hashtag name: ";
+                //echo $hashtaglists[$i]->getHashtag();
+                return $hashtaglists[$i]->getHashtag();
+                //echo "\n";
+        }
+    }
+    
+    
     function createSavedQuery($hashtag) {
         $raw_response = $_SESSION["connection"]->post("saved_searches/create", array("query" => $hashtag));
         $json_string = json_encode($raw_response, JSON_UNESCAPED_SLASHES);
