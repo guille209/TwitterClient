@@ -94,7 +94,7 @@ class hashtagController implements interfaces\iHashtagController {
         }
     }
     
-    
+   /* 
     function createSavedQuery($hashtag) {
         $raw_response = $_SESSION["connection"]->post("saved_searches/create", array("query" => $hashtag));
         $json_string = json_encode($raw_response, JSON_UNESCAPED_SLASHES);
@@ -105,13 +105,6 @@ class hashtagController implements interfaces\iHashtagController {
         $raw_response = $_SESSION["connection"]->get("saved_searches/list");
         $json_string = json_encode($raw_response, JSON_UNESCAPED_SLASHES);
         echo $json_string;
-    }
+    }*/
 
-    /*
-      function showDetailsHashtagsList(){
-      $hash = $_SESSION["connection"]->post("hashtags/showDetailsList", array("" => $_SESSION["access_token"][""]));
-      $json_string = json_encode($hash, JSON_UNESCAPED_SLASHES);
-      return \helpers\jsonShortener::shortenSearchTweet($json_string);
-      }
-     */
 }

@@ -139,8 +139,8 @@ function follow() {
     $userController = new controllers\userController();
     $app = \Slim\Slim::getInstance();
     $post_array = $app->request()->post();
-    $user_id = $post_array['user_id'];
-    $response = $userController->follow($user_id);
+    $screen_name = $post_array['screen_name'];
+    $response = $userController->follow($screen_name);
     $app = \Slim\Slim::getInstance();
     echo $response;
 }
