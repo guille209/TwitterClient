@@ -28,10 +28,10 @@ $app->post('/tweet/retweet', $authenticate(), 'retweet');
 $app->post('/user/follow', $authenticate(), 'follow');
 $app->post('/user/unfollow', $authenticate(), 'unfollow');
 $app->get('/user/showFriends', $authenticate(), 'showFriends');
-$app->post('/hashtaglist/createHashtaglist', $authenticate(), 'createHashtaglist');
-$app->post('/hashtaglist/deleteHashtaglist', $authenticate(), 'deleteHashtaglist');
-$app->get('/hashtaglist/showHashtaglistDetails', $authenticate(), 'showHashtaglistDetails');
-$app->get('/hashtaglist/showHashtaglists', $authenticate(), 'showHashtaglists');
+$app->post('/hashtaglist/create', $authenticate(), 'createHashtaglist');
+$app->post('/hashtaglist/delete', $authenticate(), 'deleteHashtaglist');
+$app->get('/hashtaglist/detail', $authenticate(), 'showHashtaglistDetails');
+$app->get('/hashtaglist/list', $authenticate(), 'showHashtaglists');
 
 //$app->post('/hashtaglist/createSavedQuery', $authenticate(), 'createSavedQuery');
 //$app->get('/hashtaglist/get_saved', $authenticate(), 'get_saved');
