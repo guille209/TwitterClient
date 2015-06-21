@@ -19,7 +19,7 @@ $app->get('/logout', 'logout');
 $app->get('/', $authenticate(), 'home');
 $app->get('/home', $authenticate(), 'home');
 $app->post('/tweet/nearby', $authenticate(), 'nearbyTweets');
-$app->get('/user/showProfile', $authenticate(), 'showProfile');
+$app->get('/user/profile', $authenticate(), 'showProfile');
 $app->post('/tweet/search', $authenticate(), 'search');
 $app->post('/tweet/create', $authenticate(), 'createTweet');
 $app->post('/tweet/destroy', $authenticate(), 'destroyTweet');
