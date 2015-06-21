@@ -79,19 +79,15 @@ class jsonShortener {
 
     public static function shortenShowProfile($json_string) {
         $array = json_decode($json_string, true);
+
+        $index = 0;
         $new_array = array();
         foreach ($array as $key => $value) {
-            $new_array['screen_name'] = $value['screen_name'];
-            /* $new_array[$index]['id'] = $value['id'];
-              $new_array[$index]['name'] = $value['name']; */
-            //$new_array['screen_name'] = $value['screen_name'];
-            /* $new_array[$index]['description'] = $value['description'];
-              $new_array[$index]['followers_count'] = $value['followers_count'];
-              $new_array[$index]['friends_count'] = $value['friends_count'];
-              $new_array[$index]['verified'] = $value['verified'];
-              $new_array[$index]['following'] = $value['following'];
-              $new_array[$index]['profile_image_url'] = $value['profile_image_url'];
-             */
+            if ($key == 'id' || $key == 'name' || $key == 'description' || $key == 'followers_count' || $key == 'friends_count' || $key == 'created_at' || $key == 'favourites_count' || $key == 'time_zone' || $key == 'geo_enabled' || $key == 'verified' || $key == 'statuses_count' || $key == 'lang') {
+                //|| $key == 'status'
+                $new_array[$index][$key] = $value;
+                $index++;
+            }
         }
         return jsonShortener::jsonRemoveUnicodeSequences(json_encode($new_array, JSON_UNESCAPED_SLASHES));
         // return $json_string;

@@ -19,8 +19,8 @@ class userController implements interfaces\iUserController {
         $profile = $_SESSION["connection"]->get("users/show", array("screen_name" => $_SESSION["access_token"]["screen_name"]));
         $json_string = json_encode($profile, JSON_UNESCAPED_SLASHES);
         //var_dump($profile);
-        //return \helpers\jsonShortener::shortenShowProfile($json_string);
-        return $json_string;
+        return \helpers\jsonShortener::shortenShowProfile($json_string);
+        //return $json_string;
     }
 
     function follow($screen_name) {
