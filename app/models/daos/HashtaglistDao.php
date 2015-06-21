@@ -35,6 +35,8 @@ class HashtaglistDao {
         $sql = "SELECT h FROM models\\entities\\Hashtaglist h WHERE h.hashtaglistId = '" . $hashtagId . "'";
         $query = $em->createQuery($sql);
         $hashtaglist = $query->getResult();
+        $em->flush();
+        $em->close();
         return $hashtaglist;
     }
 
@@ -55,4 +57,5 @@ class HashtaglistDao {
         $hashtaglists = $query->getResult();
         return $hashtaglists;
     }
+
 }

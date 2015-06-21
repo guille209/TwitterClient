@@ -36,12 +36,6 @@ $app->get('/hashtaglist/showHashtaglists', $authenticate(), 'showHashtaglists');
 //$app->post('/hashtaglist/createSavedQuery', $authenticate(), 'createSavedQuery');
 //$app->get('/hashtaglist/get_saved', $authenticate(), 'get_saved');
 
-
-//$app->get('/hashtaglist/create/:name', 'createHashtagList');
-//$app->delete('/hashtaglist/delete/:id', 'createHashtagList');
-//$app->get('/hashtaglist/list', 'listHastagLists');
-//$app->get('/hashtaglist/detail/:id', 'hashtagListDetail');
-
 /* Acciones autenticacion */
 function login() {
     $logInController = new controllers\registerController();

@@ -1,5 +1,4 @@
 <?php
-
 namespace controllers;
 
 require_once '../config/twitterConfig.php';
@@ -45,7 +44,7 @@ class hashtagController implements interfaces\iHashtagController {
         while (true) {
             sleep(1);
             $hashtaglists = $hashtaglistDao->get_hashtaglist($hashtagId);
-
+            
             foreach ($hashtaglists as $hashtaglist) {
                 $user = new \models\entities\User();
                 $userDao = new \models\daos\UserDao();
@@ -53,11 +52,12 @@ class hashtagController implements interfaces\iHashtagController {
                 $connection = new \Abraham\TwitterOAuth\TwitterOAuth(CONSUMER_KEY, CONSUMER_SECRET, $user->getOauthToken(), $user->getOauthTokenSecret());
                 $user = $connection->get("account/verify_credentials");
                 $_SESSION['userLogged'] = true;
-                $connection->post('statuses/update', array('status' => $hashtaglist->getHashtag()));
+               // $connection->post('statuses/update', array('status' => $hashtaglist->getHashtag()));
                 $hashtaglistDao->deleteHashtaglist($hashtaglist);
                 sleep(1);
             }
-            // $hashtaglistDao->deleteHashtaglist($hashtaglist);
+             //$hashtaglistDao->deleteHashtaglist($hashtaglist);
+            
         }
     }
 
