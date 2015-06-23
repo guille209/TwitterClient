@@ -31,7 +31,7 @@ class HashtaglistDoctrineDao {
 
     function get_hashtaglist($hashtagId) {
         $em = GetEntityManager();
-        $hashtaglist = new \models\entities\Hashtaglist();
+        $hashtaglist = \models\entities\EntityFactory::getEntity(\models\entities\Entities::HASHTAGLIST);
         $sql = "SELECT h FROM models\\entities\\Hashtaglist h WHERE h.hashtaglistId = '" . $hashtagId . "'";
         $query = $em->createQuery($sql);
         $hashtaglist = $query->getResult();
