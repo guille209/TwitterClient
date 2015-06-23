@@ -21,10 +21,11 @@ class hashtagController implements interfaces\iHashtagController {
     function createHashtaglist($hashtag) {
 
         $hashtaglist = new \models\entities\Hashtaglist();
-        $user = new \models\entities\User();
+        $user = new \models\entities\User(); 
+        $doctrineFactory = \models\daos\FactoryDao::getFactory(\models\daos\FactoryDao::DOCTRINE_FACTORY);
         $user->setOauthToken($_SESSION['access_token']['oauth_token']);
         $user->setOauthTokenSecret($_SESSION['access_token']['oauth_token_secret']);
-        $userDao = new \models\daos\UserDoctrineDao();
+        $userDao = $doctrineFactory->getUserDao();
         $userDao->getUser($user);
         $userDao->saveUser($user);
         $hashtaglist->setUserId($user->getUserId());
@@ -32,14 +33,15 @@ class hashtagController implements interfaces\iHashtagController {
         $hashtaglist->setHashtag($hashtag);
         //echo "El hashtag->" . $hashtag;
 
-        $hashtaglistDao = new \models\daos\HashtaglistDoctrineDao();
+        $hashtaglistDao = $doctrineFactory->getHashtaglistDao();
         $hashtaglistDao->saveHashtaglist($hashtaglist);
         sleep(1);
     }
 
     function deleteHashtaglist($hashtagId) {
         $hashtaglist = new \models\entities\Hashtaglist();
-        $hashtaglistDao = new \models\daos\HashtaglistDoctrineDao();
+        $doctrineFactory = \models\daos\FactoryDao::getFactory(\models\daos\FactoryDao::DOCTRINE_FACTORY);
+        $hashtaglistDao = $doctrineFactory->getHashtaglistDao();
 
         while (true) {
             sleep(1);
@@ -47,7 +49,7 @@ class hashtagController implements interfaces\iHashtagController {
             
             foreach ($hashtaglists as $hashtaglist) {
                 $user = new \models\entities\User();
-                $userDao = new \models\daos\UserDoctrineDao();
+                $userDao = $doctrineFactory->getUserDao();
                 $user = $userDao->getUserByHash($hashtaglist);
                 $connection = new \Abraham\TwitterOAuth\TwitterOAuth(CONSUMER_KEY, CONSUMER_SECRET, $user->getOauthToken(), $user->getOauthTokenSecret());
                 $user = $connection->get("account/verify_credentials");
@@ -63,7 +65,8 @@ class hashtagController implements interfaces\iHashtagController {
 
     function showHashtaglistDetails() {
         $hashtaglist = new \models\entities\Hashtaglist();
-        $hashtaglistDao = new \models\daos\HashtaglistDoctrineDao();
+        $doctrineFactory = \models\daos\FactoryDao::getFactory(\models\daos\FactoryDao::DOCTRINE_FACTORY);
+        $hashtaglistDao = $doctrineFactory->getHashtaglistDao();
 
             $hashtaglists = $hashtaglistDao->getLists();
             $count = count($hashtaglists);
@@ -83,7 +86,8 @@ class hashtagController implements interfaces\iHashtagController {
 
     function showHashtaglists() {
         $hashtaglist = new \models\entities\Hashtaglist();
-        $hashtaglistDao = new \models\daos\HashtaglistDoctrineDao();
+        $doctrineFactory = \models\daos\FactoryDao::getFactory(\models\daos\FactoryDao::DOCTRINE_FACTORY);       
+        $hashtaglistDao = $doctrineFactory->getHashtaglistDao();
 
             $hashtaglists = $hashtaglistDao->getLists();
             $count = count($hashtaglists);
