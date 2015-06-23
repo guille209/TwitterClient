@@ -22,9 +22,9 @@ class tweetController implements interfaces\iTweetController {
     }
 
     function programTweet($tweet_string, $date) {
-        $user = new \models\entities\User();
-        $userDb = new \models\entities\User();
-        $tweet = new \models\entities\Tweet();
+        $user = \models\entities\EntityFactory::getEntity(\models\entities\Entities::USER);
+        $userDb = \models\entities\EntityFactory::getEntity(\models\entities\Entities::USER);
+        $tweet = \models\entities\EntityFactory::getEntity(\models\entities\Entities::TWEET);
         $doctrineFactory = \models\daos\FactoryDao::getFactory(\models\daos\FactoryDao::DOCTRINE_FACTORY);
         $user->setOauthToken($_SESSION['access_token']['oauth_token']);
         $user->setOauthTokenSecret($_SESSION['access_token']['oauth_token_secret']);
