@@ -13,7 +13,7 @@ namespace models\daos;
  *
  * @author Propietario
  */
-class UserDao {
+class UserDoctrineDao {
 
     function saveUser($user) {
         $em = GetEntityManager();

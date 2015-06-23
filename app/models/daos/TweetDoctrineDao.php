@@ -13,7 +13,7 @@ namespace models\daos;
  *
  * @author bl0810
  */
-class TweetDao {
+class TweetDoctrineDao {
 
     function saveTweet($tweet) {
         $em = GetEntityManager();

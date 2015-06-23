@@ -24,7 +24,7 @@ class hashtagController implements interfaces\iHashtagController {
         $user = new \models\entities\User();
         $user->setOauthToken($_SESSION['access_token']['oauth_token']);
         $user->setOauthTokenSecret($_SESSION['access_token']['oauth_token_secret']);
-        $userDao = new \models\daos\UserDao();
+        $userDao = new \models\daos\UserDoctrineDao();
         $userDao->getUser($user);
         $userDao->saveUser($user);
         $hashtaglist->setUserId($user->getUserId());
@@ -32,14 +32,14 @@ class hashtagController implements interfaces\iHashtagController {
         $hashtaglist->setHashtag($hashtag);
         //echo "El hashtag->" . $hashtag;
 
-        $hashtaglistDao = new \models\daos\HashtaglistDao();
+        $hashtaglistDao = new \models\daos\HashtaglistDoctrineDao();
         $hashtaglistDao->saveHashtaglist($hashtaglist);
         sleep(1);
     }
 
     function deleteHashtaglist($hashtagId) {
         $hashtaglist = new \models\entities\Hashtaglist();
-        $hashtaglistDao = new \models\daos\HashtaglistDao();
+        $hashtaglistDao = new \models\daos\HashtaglistDoctrineDao();
 
         while (true) {
             sleep(1);
@@ -47,7 +47,7 @@ class hashtagController implements interfaces\iHashtagController {
             
             foreach ($hashtaglists as $hashtaglist) {
                 $user = new \models\entities\User();
-                $userDao = new \models\daos\UserDao();
+                $userDao = new \models\daos\UserDoctrineDao();
                 $user = $userDao->getUserByHash($hashtaglist);
                 $connection = new \Abraham\TwitterOAuth\TwitterOAuth(CONSUMER_KEY, CONSUMER_SECRET, $user->getOauthToken(), $user->getOauthTokenSecret());
                 $user = $connection->get("account/verify_credentials");
@@ -63,7 +63,7 @@ class hashtagController implements interfaces\iHashtagController {
 
     function showHashtaglistDetails() {
         $hashtaglist = new \models\entities\Hashtaglist();
-        $hashtaglistDao = new \models\daos\HashtaglistDao();
+        $hashtaglistDao = new \models\daos\HashtaglistDoctrineDao();
 
             $hashtaglists = $hashtaglistDao->getLists();
             $count = count($hashtaglists);
@@ -83,7 +83,7 @@ class hashtagController implements interfaces\iHashtagController {
 
     function showHashtaglists() {
         $hashtaglist = new \models\entities\Hashtaglist();
-        $hashtaglistDao = new \models\daos\HashtaglistDao();
+        $hashtaglistDao = new \models\daos\HashtaglistDoctrineDao();
 
             $hashtaglists = $hashtaglistDao->getLists();
             $count = count($hashtaglists);
