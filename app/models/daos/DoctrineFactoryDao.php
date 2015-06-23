@@ -14,15 +14,15 @@ namespace models\daos;
 class DoctrineFactoryDao extends FactoryDao {
 
     public function getUserDao() {
-        return new \models\daos\UserDoctrineDao();
+        return new UserDoctrineDao();
     }
 
     public function getHashtaglistDao() {
-        return new models\daos\HashtaglistDoctrineDao();
+        return new HashtaglistDoctrineDao();
     }
 
     public function getTweetDao() {
-        return new models\daos\TweetDoctrineDao();
+        return new TweetDoctrineDao();
     }
 
 //put your code here

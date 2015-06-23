@@ -168,7 +168,7 @@ function createHashtaglist() {
     $response = $hashtagController->createHashtaglist($h);
     //echo $response;
     $app = \Slim\Slim::getInstance();
-    $app->redirect('/hashtaglist/showHashtaglistDetails');
+    $app->redirect('/hashtaglist/detail');
 }
 
 function deleteHashtaglist() {
