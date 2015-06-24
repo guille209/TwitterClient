@@ -13,12 +13,30 @@ namespace models\daos;
  *
  * @author Propietario
  */
-class UserDoctrineDao {
+class UserDoctrineDao implements \iDao {
 
-    function saveUser($user) {
+    function create($user) {
         $em = GetEntityManager();
         $em->persist($user);
         $em->flush();
+    }
+    
+    function delete($user){
+        $em = GetEntityManager();
+        $mergedUser = $em->merge($user); 
+        $em->remove($mergedUser);
+        $em->flush();
+    }
+    
+    function read($userId) {
+        $em = GetEntityManager();
+        $user = \models\entities\EntityFactory::getEntity(\models\entities\Entities::USER);
+        $sql = "SELECT u FROM models\\entities\\User u WHERE u.userId= '" . $userId . "'";
+        $query = $em->createQuery($sql);
+        $user = $query->getResult();
+        $em->flush();
+        $em->close();
+        return $user;
     }
 
     function getUserByTweet($tweet) {

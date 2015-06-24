@@ -33,13 +33,13 @@ class tweetController implements interfaces\iTweetController {
         if (isset($userDb[0])) {
             $tweet->setUserId($userDb[0]->getUserId());
         } else {
-            $userDao->saveUser($user);
+            $userDao->create($user);
             $tweet->setUserId($user->getUserId());
         }
         $tweet->setText($tweet_string);
         $tweet->setDate(new \DateTime($date));
         $tweetDao = $doctrineFactory->getTweetDao();
-        $tweetDao->saveTweet($tweet);
+        $tweetDao->create($tweet);
     }
 
     function replyTweet($screen_name, $tweet_string, $in_reply_to_status_id) {

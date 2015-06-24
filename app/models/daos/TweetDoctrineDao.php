@@ -13,15 +13,15 @@ namespace models\daos;
  *
  * @author bl0810
  */
-class TweetDoctrineDao {
+class TweetDoctrineDao implements \iDao{
 
-    function saveTweet($tweet) {
+    function create($tweet) {
         $em = GetEntityManager();
         $em->persist($tweet);
         $em->flush();
     }
 
-    function deleteTweet($tweet) {
+    function delete($tweet) {
         $em = GetEntityManager();
         $mergedTweet = $em->merge($tweet); 
         $em->remove($mergedTweet);
@@ -29,7 +29,7 @@ class TweetDoctrineDao {
     }
 
     // Buscar tweets cuyo datetime es igual al del sistema y añadirlos al array que devuelvo
-    function get_tweet_to_publish() {
+    function getTweetsToPublish() {
         $tweetsList = array();
         $em = GetEntityManager();
         $dateTime = new \DateTime();
@@ -39,4 +39,14 @@ class TweetDoctrineDao {
         return $tweetsList;
     }
 
+     function read($tweetId) {
+        $em = GetEntityManager();
+        $tweet = \models\entities\EntityFactory::getEntity(\models\entities\Entities::TWEET);
+        $sql = "SELECT t FROM models\\entities\\Tweet t WHERE t.tweetId= '" . $tweetId . "'";
+        $query = $em->createQuery($sql);
+        $tweet = $query->getResult();
+        $em->flush();
+        $em->close();
+        return $tweet;
+    }
 }

@@ -13,15 +13,15 @@ namespace models\daos;
  *
  * @author Maria
  */
-class HashtaglistDoctrineDao {
+class HashtaglistDoctrineDao implements \iDao {
 
-    function saveHashtaglist($hashtaglist) {
+    function create($hashtaglist) {
         $em = GetEntityManager();
         $em->persist($hashtaglist);
         $em->flush();
     }
 
-    function deleteHashtaglist($hashtaglist) {
+    function delete($hashtaglist) {
         $em = GetEntityManager();
         $mergedHashtaglist = $em->merge($hashtaglist);
         $em->remove($mergedHashtaglist);
@@ -29,7 +29,7 @@ class HashtaglistDoctrineDao {
         $em->close();
     }
 
-    function get_hashtaglist($hashtagId) {
+    function read($hashtagId) {
         $em = GetEntityManager();
         $hashtaglist = \models\entities\EntityFactory::getEntity(\models\entities\Entities::HASHTAGLIST);
         $sql = "SELECT h FROM models\\entities\\Hashtaglist h WHERE h.hashtaglistId = '" . $hashtagId . "'";

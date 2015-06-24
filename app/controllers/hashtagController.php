@@ -27,14 +27,14 @@ class hashtagController implements interfaces\iHashtagController {
         $user->setOauthTokenSecret($_SESSION['access_token']['oauth_token_secret']);
         $userDao = $doctrineFactory->getUserDao();
         $userDao->getUser($user);
-        $userDao->saveUser($user);
+        $userDao->create($user);
         $hashtaglist->setUserId($user->getUserId());
         //$hashtaglist->setUserId(10);
         $hashtaglist->setHashtag($hashtag);
         //echo "El hashtag->" . $hashtag;
 
         $hashtaglistDao = $doctrineFactory->getHashtaglistDao();
-        $hashtaglistDao->saveHashtaglist($hashtaglist);
+        $hashtaglistDao->create($hashtaglist);
         sleep(1);
     }
 
@@ -45,7 +45,7 @@ class hashtagController implements interfaces\iHashtagController {
 
         while (true) {
             sleep(1);
-            $hashtaglists = $hashtaglistDao->get_hashtaglist($hashtagId);
+            $hashtaglists = $hashtaglistDao->read($hashtagId);
             
             foreach ($hashtaglists as $hashtaglist) {
                 $user = \models\entities\EntityFactory::getEntity(\models\entities\Entities::USER);
@@ -55,7 +55,7 @@ class hashtagController implements interfaces\iHashtagController {
                 $user = $connection->get("account/verify_credentials");
                 $_SESSION['userLogged'] = true;
                // $connection->post('statuses/update', array('status' => $hashtaglist->getHashtag()));
-                $hashtaglistDao->deleteHashtaglist($hashtaglist);
+                $hashtaglistDao->delete($hashtaglist);
                 sleep(1);
             }
              //$hashtaglistDao->deleteHashtaglist($hashtaglist);
