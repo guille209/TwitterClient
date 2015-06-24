@@ -17,8 +17,6 @@ abstract class FactoryDao {
 
     //put your code here
 
-    const DOCTRINE_FACTORY = 1;
-
     static $doctrineFactoryDao;
 
     abstract function getUserDao();
@@ -27,9 +25,11 @@ abstract class FactoryDao {
 
     abstract function getHashtaglistDao();
 
-    static function getFactory($indexFactory) {
-        switch ($indexFactory) {
-            case self::DOCTRINE_FACTORY:
+    static function getFactory() {
+        $techArray = unserialize(DAO_TECH_TO_USE);
+        $techToUse = array_keys($techArray, true)[0];
+        switch ($techToUse) {
+            case 'DOCTRINE':
                 if (!isset(self::$doctrineFactoryDao)) {
                     self::$doctrineFactoryDao = new DoctrineFactoryDao();
                 }

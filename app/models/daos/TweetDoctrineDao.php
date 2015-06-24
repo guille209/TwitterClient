@@ -13,7 +13,7 @@ namespace models\daos;
  *
  * @author bl0810
  */
-class TweetDoctrineDao implements \iDao{
+class TweetDoctrineDao implements iDao{
 
     function create($tweet) {
         $em = GetEntityManager();

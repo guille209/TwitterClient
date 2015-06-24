@@ -2,6 +2,8 @@
 
 require_once '../vendor/autoload.php';
 require_once '../config/twitterConfig.php';
+require_once '../config/daoConfig.php';
+
 session_cache_limiter(false);
 session_start();
 

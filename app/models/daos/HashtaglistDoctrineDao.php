@@ -13,7 +13,7 @@ namespace models\daos;
  *
  * @author Maria
  */
-class HashtaglistDoctrineDao implements \iDao {
+class HashtaglistDoctrineDao implements iDao {
 
     function create($hashtaglist) {
         $em = GetEntityManager();

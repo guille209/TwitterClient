@@ -13,7 +13,7 @@ namespace models\daos;
  *
  * @author Propietario
  */
-class UserDoctrineDao implements \iDao {
+class UserDoctrineDao implements iDao {
 
     function create($user) {
         $em = GetEntityManager();

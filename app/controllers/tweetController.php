@@ -25,10 +25,10 @@ class tweetController implements interfaces\iTweetController {
         $user = \models\entities\EntityFactory::getEntity(\models\entities\Entities::USER);
         $userDb = \models\entities\EntityFactory::getEntity(\models\entities\Entities::USER);
         $tweet = \models\entities\EntityFactory::getEntity(\models\entities\Entities::TWEET);
-        $doctrineFactory = \models\daos\FactoryDao::getFactory(\models\daos\FactoryDao::DOCTRINE_FACTORY);
+        $factory = \models\daos\FactoryDao::getFactory();
         $user->setOauthToken($_SESSION['access_token']['oauth_token']);
         $user->setOauthTokenSecret($_SESSION['access_token']['oauth_token_secret']);
-        $userDao = $doctrineFactory->getUserDao();
+        $userDao = $factory->getUserDao();
         $userDb = $userDao->getUser($user);
         if (isset($userDb[0])) {
             $tweet->setUserId($userDb[0]->getUserId());
@@ -38,7 +38,7 @@ class tweetController implements interfaces\iTweetController {
         }
         $tweet->setText($tweet_string);
         $tweet->setDate(new \DateTime($date));
-        $tweetDao = $doctrineFactory->getTweetDao();
+        $tweetDao = $factory->getTweetDao();
         $tweetDao->create($tweet);
     }
 
