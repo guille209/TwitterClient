@@ -132,16 +132,15 @@ function showProfile() {
 
 /* Seguimiento usuarios */
 
-/*function followEdit(){
-    $userController = new controllers\userController();
-    $app = \Slim\Slim::getInstance();
-    $post_array = $app->request()->post();
-    //$source_screen_name = $post_array['source_screen_name'];
-    $target_screen_name = $post_array['target_screen_name'];
-    $response = $userController->followEdit($target_screen_name);
-    echo $response;
-}*/
-
+/* function followEdit(){
+  $userController = new controllers\userController();
+  $app = \Slim\Slim::getInstance();
+  $post_array = $app->request()->post();
+  //$source_screen_name = $post_array['source_screen_name'];
+  $target_screen_name = $post_array['target_screen_name'];
+  $response = $userController->followEdit($post_array['screen_name'], $post_array['target_screen_name']);
+  echo $response;
+  } */
 
 function follow() {
     $userController = new controllers\userController();
@@ -200,14 +199,16 @@ function showHashtaglistDetails() {
     $hashtagController = new controllers\hashtagController();
     $app = \Slim\Slim::getInstance();
     $response = $hashtagController->showHashtaglistDetails();
-    echo $response;
+    //var_dump($response);
+    //echo $response;
 }
 
 function showHashtaglists() {
     $hashtagController = new controllers\hashtagController();
     $app = \Slim\Slim::getInstance();
     $response = $hashtagController->showHashtaglists();
-    echo $response;
+    var_dump($response);
+    //echo $response;
 }
 
 /* Pruebas */

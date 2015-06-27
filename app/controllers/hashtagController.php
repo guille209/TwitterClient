@@ -77,19 +77,22 @@ class hashtagController implements interfaces\iHashtagController {
         $hashtaglistDao = $factory->getHashtaglistDao();
 
         $hashtaglists = $hashtaglistDao->getLists();
-        $count = count($hashtaglists);
-        for ($i = 0; $i < $count; $i++) {
-            //echo "count->".count($hashtaglists); 
-            echo "Hashtaglist id: ";
-            echo $hashtaglists[$i]->getHashtaglistId();
-            echo " ";
-            echo "User id ";
-            echo $hashtaglists[$i]->getUserId();
-            echo " ";
-            echo "Hashtag name ";
-            echo $hashtaglists[$i]->getHashtag();
-            echo "\n";
-        }
+        /* $count = count($hashtaglists);
+          $response = array();
+          for ($i = 0; $i < $count; $i++) {
+          //echo "count->".count($hashtaglists);
+          /*echo "Hashtaglist id: ";
+          echo $hashtaglists[$i]->getHashtaglistId();
+          echo " ";
+          echo "User id ";
+          echo $hashtaglists[$i]->getUserId();
+          echo " ";
+          echo "Hashtag name ";
+          echo $hashtaglists[$i]->getHashtag();
+          echo "\n";
+          //$response = $hashtaglists[$i];
+          } */
+        return $hashtaglists;
     }
 
     function showHashtaglists() {
@@ -98,12 +101,16 @@ class hashtagController implements interfaces\iHashtagController {
         $hashtaglistDao = $factory->getHashtaglistDao();
 
         $hashtaglists = $hashtaglistDao->getLists();
-        $count = count($hashtaglists);
-        for ($i = 0; $i < $count; $i++) {
-            echo "Hashtag name: ";
-            echo $hashtaglists[$i]->getHashtag();
-            echo "\n";
-        }
+
+        /* $count = count($hashtaglists);
+          for ($i = 0; $i < $count; $i++) {
+          echo "Hashtag name: ";
+          echo $hashtaglists[$i]->getHashtag();
+          echo "\n";
+          } */
+        
+        //$json_string = json_encode($hashtaglists , JSON_UNESCAPED_SLASHES);
+        return $hashtaglists;
     }
 
     /*
