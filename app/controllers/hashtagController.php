@@ -71,28 +71,14 @@ class hashtagController implements interfaces\iHashtagController {
         }
     }
 
-    function showHashtaglistDetails() {
-        $hashtaglist = \models\entities\EntityFactory::getEntity(\models\entities\Entities::HASHTAGLIST);
-        $factory = \models\daos\FactoryDao::getFactory();
-        $hashtaglistDao = $factory->getHashtaglistDao();
+    public $numero_de_tweets = 50;
 
-        $hashtaglists = $hashtaglistDao->getLists();
-        /* $count = count($hashtaglists);
-          $response = array();
-          for ($i = 0; $i < $count; $i++) {
-          //echo "count->".count($hashtaglists);
-          /*echo "Hashtaglist id: ";
-          echo $hashtaglists[$i]->getHashtaglistId();
-          echo " ";
-          echo "User id ";
-          echo $hashtaglists[$i]->getUserId();
-          echo " ";
-          echo "Hashtag name ";
-          echo $hashtaglists[$i]->getHashtag();
-          echo "\n";
-          //$response = $hashtaglists[$i];
-          } */
-        return $hashtaglists;
+    function showHashtaglistDetails($hashtag) {
+        $hashtaglist = \models\entities\EntityFactory::getEntity(\models\entities\Entities::HASHTAGLIST);
+        //$hashtaglists = $hashtaglistDao->getHashtags($hashtag);
+        $raw_response = $_SESSION["connection"]->get("search/tweets", array("q" => $hashtag, "count" => $this->numero_de_tweets));
+        $json_string = json_encode($raw_response, JSON_UNESCAPED_SLASHES);
+        return \helpers\jsonShortener::shortenSearchTweet($json_string);
     }
 
     function showHashtaglists() {
@@ -108,7 +94,7 @@ class hashtagController implements interfaces\iHashtagController {
           echo $hashtaglists[$i]->getHashtag();
           echo "\n";
           } */
-        
+
         //$json_string = json_encode($hashtaglists , JSON_UNESCAPED_SLASHES);
         return $hashtaglists;
     }

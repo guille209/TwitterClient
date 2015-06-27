@@ -16,7 +16,7 @@ interface iHashtagController {
     
     public function deleteHashtagList($hashtagId);
     
-    public function showHashtaglistDetails();
+    public function showHashtaglistDetails($hashtag);
     
     public function showHashtaglists();
     

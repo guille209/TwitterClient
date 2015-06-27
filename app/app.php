@@ -33,7 +33,7 @@ $app->post('/user/unfollow', $authenticate(), 'unfollow');
 $app->get('/user/showFriends', $authenticate(), 'showFriends');
 $app->post('/hashtaglist/create', $authenticate(), 'createHashtaglist');
 $app->post('/hashtaglist/delete', $authenticate(), 'deleteHashtaglist');
-$app->get('/hashtaglist/detail', $authenticate(), 'showHashtaglistDetails');
+$app->post('/hashtaglist/detail', $authenticate(), 'showHashtaglistDetails');
 $app->get('/hashtaglist/list', $authenticate(), 'showHashtaglists');
 
 //$app->post('/hashtaglist/createSavedQuery', $authenticate(), 'createSavedQuery');
@@ -198,9 +198,11 @@ function deleteHashtaglist() {
 function showHashtaglistDetails() {
     $hashtagController = new controllers\hashtagController();
     $app = \Slim\Slim::getInstance();
-    $response = $hashtagController->showHashtaglistDetails();
+    $post_array = $app->request()->post();
+    $h = $post_array['hashtag'];
+    $response = $hashtagController->showHashtaglistDetails($h);
     //var_dump($response);
-    //echo $response;
+    echo $response;
 }
 
 function showHashtaglists() {
