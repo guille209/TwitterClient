@@ -23,23 +23,22 @@ class userController implements interfaces\iUserController {
         //return $json_string;
     }
 
-    function followEdit($screen_name_subject,$screen_name_target){
-        $raw_response = $_SESSION["connection"]->post("friendships/create", array("source_screen_name" => $screen_name_subject, "target_screen_name" => $screen_name_target));
-        $app = \Slim\Slim::getInstance();
-        
-        
+     /*function followEdit($target_screen_name){ //screen_name
+        $raw_response = $_SESSION["connection"]->get("friendships/show/".$_SESSION["access_token"]["screen_name"]."&".$target_screen_name);
+        $app = \Slim\Slim::getInstance();      
         $json_string = json_encode($raw_response, JSON_UNESCAPED_SLASHES);
+        return $json_string;
         
-    }
+    }*/
     
-    /*
+   
     function follow($screen_name) {
         $raw_response = $_SESSION["connection"]->post("friendships/create", array("screen_name" => $screen_name));
         $app = \Slim\Slim::getInstance();
         $json_string = json_encode($raw_response, JSON_UNESCAPED_SLASHES);
         //return $json_string;
         $app->redirect('/user/showFriends');
-    }*/
+    }
 
     function showFriends() {
         
@@ -64,13 +63,13 @@ class userController implements interfaces\iUserController {
         } while ($cursor != 0);*/
     }
 
-   /* function unfollow($screen_name) {
+    function unfollow($screen_name) {
         $raw_response = $_SESSION["connection"]->post("friendships/destroy", array("screen_name" => $screen_name));
         $app = \Slim\Slim::getInstance();
         $json_string = json_encode($raw_response, JSON_UNESCAPED_SLASHES);
         return $json_string;
         //$app->redirect('/user/showFriends');
-    }*/
+    }
     
 
 }
