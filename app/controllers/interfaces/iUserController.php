@@ -15,9 +15,12 @@ interface iUserController {
     
     public function showProfile();
     
-    public function follow($user_id);
+    public function followEdit($screen_name_subject,$screen_name_target);
     
-    public function unfollow($user_screen_name);
+   // public function follow($user_id);
+    
+   // public function unfollow($user_screen_name);
     
     public function showFriends();
+    
 }
