@@ -29,10 +29,11 @@ $app->post('/tweet/reply', $authenticate(), 'replyTweet');
 $app->post('/tweet/retweet', $authenticate(), 'retweet');
 $app->post('/user/follow', $authenticate(), 'follow');
 $app->post('/user/unfollow', $authenticate(), 'unfollow');
+//$app->get('/user/followEdit', $authenticate(), 'followEdit');
 $app->get('/user/showFriends', $authenticate(), 'showFriends');
 $app->post('/hashtaglist/create', $authenticate(), 'createHashtaglist');
 $app->post('/hashtaglist/delete', $authenticate(), 'deleteHashtaglist');
-$app->get('/hashtaglist/detail', $authenticate(), 'showHashtaglistDetails');
+$app->post('/hashtaglist/detail', $authenticate(), 'showHashtaglistDetails');
 $app->get('/hashtaglist/list', $authenticate(), 'showHashtaglists');
 
 //$app->post('/hashtaglist/createSavedQuery', $authenticate(), 'createSavedQuery');
@@ -131,6 +132,16 @@ function showProfile() {
 
 /* Seguimiento usuarios */
 
+/* function followEdit(){
+  $userController = new controllers\userController();
+  $app = \Slim\Slim::getInstance();
+  $post_array = $app->request()->post();
+  //$source_screen_name = $post_array['source_screen_name'];
+  $target_screen_name = $post_array['target_screen_name'];
+  $response = $userController->followEdit($post_array['screen_name'], $post_array['target_screen_name']);
+  echo $response;
+  } */
+
 function follow() {
     $userController = new controllers\userController();
     $app = \Slim\Slim::getInstance();
@@ -187,7 +198,10 @@ function deleteHashtaglist() {
 function showHashtaglistDetails() {
     $hashtagController = new controllers\hashtagController();
     $app = \Slim\Slim::getInstance();
-    $response = $hashtagController->showHashtaglistDetails();
+    $post_array = $app->request()->post();
+    $h = $post_array['hashtag'];
+    $response = $hashtagController->showHashtaglistDetails($h);
+    //var_dump($response);
     echo $response;
 }
 
@@ -195,7 +209,8 @@ function showHashtaglists() {
     $hashtagController = new controllers\hashtagController();
     $app = \Slim\Slim::getInstance();
     $response = $hashtagController->showHashtaglists();
-    echo $response;
+    var_dump($response);
+    //echo $response;
 }
 
 /* Pruebas */

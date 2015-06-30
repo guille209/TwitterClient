@@ -23,6 +23,15 @@ class userController implements interfaces\iUserController {
         //return $json_string;
     }
 
+     /*function followEdit($target_screen_name){ //screen_name
+        $raw_response = $_SESSION["connection"]->get("friendships/show/".$_SESSION["access_token"]["screen_name"]."&".$target_screen_name);
+        $app = \Slim\Slim::getInstance();      
+        $json_string = json_encode($raw_response, JSON_UNESCAPED_SLASHES);
+        return $json_string;
+        
+    }*/
+    
+   
     function follow($screen_name) {
         $raw_response = $_SESSION["connection"]->post("friendships/create", array("screen_name" => $screen_name));
         $app = \Slim\Slim::getInstance();
@@ -61,5 +70,6 @@ class userController implements interfaces\iUserController {
         return $json_string;
         //$app->redirect('/user/showFriends');
     }
+    
 
 }
