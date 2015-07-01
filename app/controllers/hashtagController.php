@@ -85,18 +85,15 @@ class hashtagController implements interfaces\iHashtagController {
         $hashtaglist = \models\entities\EntityFactory::getEntity(\models\entities\Entities::HASHTAGLIST);
         $factory = \models\daos\FactoryDao::getFactory();
         $hashtaglistDao = $factory->getHashtaglistDao();
-
         $hashtaglists = $hashtaglistDao->getLists();
+        $newArray = array();
+        $count = count($hashtaglists);
+        for ($i = 0; $i < $count; $i++) {
+            $newArray[$i] = $hashtaglists[$i]->getHashtag();
+        }
 
-        /* $count = count($hashtaglists);
-          for ($i = 0; $i < $count; $i++) {
-          echo "Hashtag name: ";
-          echo $hashtaglists[$i]->getHashtag();
-          echo "\n";
-          } */
-
-        //$json_string = json_encode($hashtaglists , JSON_UNESCAPED_SLASHES);
-        return $hashtaglists;
+        $json_string = json_encode($newArray, JSON_UNESCAPED_SLASHES);
+        return $json_string;
     }
 
     /*
