@@ -1,18 +1,6 @@
 <?php
 
 namespace controllers;
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- * Description of tweetController
- *
- * @author Propietario
- */
 class tweetController implements interfaces\iTweetController {
 
     function toTweet($tweet_string) {
@@ -58,7 +46,6 @@ class tweetController implements interfaces\iTweetController {
         $raw_response = $_SESSION["connection"]->post("statuses/retweet/" . $id_tweet);
         $app = \Slim\Slim::getInstance();
         $json_string = json_encode($raw_response, JSON_UNESCAPED_SLASHES);
-        //return $json_string;
         $app->redirect('/home');
     }
     

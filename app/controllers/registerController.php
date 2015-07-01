@@ -2,12 +2,6 @@
 
 namespace controllers;
 use Abraham\TwitterOAuth\TwitterOAuth;
-/**
- * Description of logInController
- *
- * @author Propietario
- * 
- */
 class registerController implements interfaces\iRegisterController {
 
     function login() {

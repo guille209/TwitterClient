@@ -13,7 +13,6 @@ namespace models\daos;
  */
 interface iDao {
 
-    //put your code here
     public function create($entity);
 
     public function delete($entity);

@@ -15,7 +15,6 @@ namespace models\entities;
  */
 class EntityPrototype {
 
-    //put your code here
         public $map = array();
         
     function __construct() {

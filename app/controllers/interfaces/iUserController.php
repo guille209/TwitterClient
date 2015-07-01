@@ -24,5 +24,4 @@ interface iUserController {
 
     public function unfollow($user_screen_name);
 
-    public function showFriends();
 }

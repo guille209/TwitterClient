@@ -1,17 +1,7 @@
 <?php
 
 namespace controllers;
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
-/**
- * Description of searchController
- *
- * @author bl0810
- */
 class searchController implements interfaces\iSearchController {
 
     public $numero_de_tweets = 20;

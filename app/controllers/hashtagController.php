@@ -6,17 +6,7 @@ require_once '../config/twitterConfig.php';
 require_once '../config/bootstrap.php';
 require_once '../vendor/autoload.php';
 require_once '../vendor/abraham/twitteroauth/src/TwitterOAuth.php';
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
-/**
- * Description of hashtagController
- *
- * @author Propietario
- */
 class hashtagController implements interfaces\iHashtagController {
 
     function createHashtaglist($hashtag) {
@@ -38,9 +28,7 @@ class hashtagController implements interfaces\iHashtagController {
             $userDao->create($user);
             $hashtaglist->setUserId($user->getUserId());
         }
-        //$hashtaglist->setUserId(10);
         $hashtaglist->setHashtag($hashtag);
-        //echo "El hashtag->" . $hashtag;
 
         $hashtaglistDao = $factory->getHashtaglistDao();
         $hashtaglistDao->create($hashtaglist);
@@ -63,11 +51,9 @@ class hashtagController implements interfaces\iHashtagController {
                 $connection = new \Abraham\TwitterOAuth\TwitterOAuth(CONSUMER_KEY, CONSUMER_SECRET, $user->getOauthToken(), $user->getOauthTokenSecret());
                 $user = $connection->get("account/verify_credentials");
                 $_SESSION['userLogged'] = true;
-                // $connection->post('statuses/update', array('status' => $hashtaglist->getHashtag()));
                 $hashtaglistDao->delete($hashtaglist);
                 sleep(1);
             }
-            //$hashtaglistDao->deleteHashtaglist($hashtaglist);
         }
     }
 
@@ -75,7 +61,6 @@ class hashtagController implements interfaces\iHashtagController {
 
     function showHashtaglistDetails($hashtag) {
         $hashtaglist = \models\entities\EntityFactory::getEntity(\models\entities\Entities::HASHTAGLIST);
-        //$hashtaglists = $hashtaglistDao->getHashtags($hashtag);
         $raw_response = $_SESSION["connection"]->get("search/tweets", array("q" => $hashtag, "count" => $this->numero_de_tweets));
         $json_string = json_encode($raw_response, JSON_UNESCAPED_SLASHES);
         return \helpers\jsonShortener::shortenSearchTweet($json_string);
@@ -96,16 +81,4 @@ class hashtagController implements interfaces\iHashtagController {
         return $json_string;
     }
 
-    /*
-      function createSavedQuery($hashtag) {
-      $raw_response = $_SESSION["connection"]->post("saved_searches/create", array("query" => $hashtag));
-      $json_string = json_encode($raw_response, JSON_UNESCAPED_SLASHES);
-      echo $json_string;
-      }
-
-      function get_saved() {
-      $raw_response = $_SESSION["connection"]->get("saved_searches/list");
-      $json_string = json_encode($raw_response, JSON_UNESCAPED_SLASHES);
-      echo $json_string;
-      } */
 }

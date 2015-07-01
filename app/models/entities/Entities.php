@@ -12,7 +12,6 @@ namespace models\entities;
  * @author Propietario
  */
 abstract class Entities {
-    //put your code here
     const HASHTAGLIST = 0;
     const TWEET = 1;
     const USER = 2;

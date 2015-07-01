@@ -4,17 +4,6 @@ namespace controllers;
 
 use Abraham\TwitterOAuth\TwitterOAuth;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- * Description of homeController
- *
- * @author Propietario
- */
 class homeController {
 
     public $numero_de_tweets = 50;
@@ -32,21 +21,8 @@ class homeController {
             $user = $_SESSION["connection"]->get("account/verify_credentials");
             $_SESSION['userLogged'] = true;
         }
-        /*echo "<h1>Home</h1><br>";
-        echo "<form action='/tweet/search' method='POST'><input name='criteria' type='text' placeholder='Buscar... '/></form>";
-        echo "<a href='/user/showProfile'> Ver perfil usuario </a>";
-        echo "<br><a href='/logout'> Logout </a>";
-        echo "<form action='/tweet/create' method='POST'><input name='tweet' type='text' placeholder='Tweet... '/></form>";
-        */
         $raw_response = $_SESSION["connection"]->get("statuses/home_timeline", array("count" => $this->numero_de_tweets));
         $json_string = json_encode($raw_response, JSON_UNESCAPED_SLASHES);
-        
-      /*  echo "<a href='/user/showProfile'> Ver perfil usuario </a>";
-        echo "<br/><br/>";
-        echo "<form action='/hashtaglist/createHashtagList' method='POST'><input name='name' type='text' placeholder='Nombre Lista Hashtags '/></form>";
-        echo "<br/>";       
-        echo "USER HOME TIMELINE:";
-        echo "<br/>";*/
         return \helpers\jsonShortener::shortenHomeTweet($json_string);
     }
 

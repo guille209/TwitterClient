@@ -51,7 +51,6 @@ class HashtaglistDoctrineDao implements iDao {
 
     function getHashtags($hashtag) {
         $em = GetEntityManager();
-        //$hashtaglists = array();
         $sql = "SELECT h FROM models\\entities\\Hashtaglist h WHERE h.hashtag = '". $hashtag."' ";
         $query = $em->createQuery($sql);
         $hashtaglists = $query->getResult();

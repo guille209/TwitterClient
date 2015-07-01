@@ -25,5 +25,4 @@ class DoctrineFactoryDao extends FactoryDao {
         return new TweetDoctrineDao();
     }
 
-//put your code here
 }
