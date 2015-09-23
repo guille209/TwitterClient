@@ -4,7 +4,7 @@ Subject: End master project
 
 Project: TwitterClient
 
-Description: Twitter client that uses Twitter API REST offering more functionalities such as:
+Description: Twitter REST client that uses Twitter API REST adding more functionalities such as:
 
 --Scheduling a tweet to certain date, hour
 
